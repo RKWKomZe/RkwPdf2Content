@@ -1,0 +1,53 @@
+<T3DataStructure>
+    <meta type="array">
+        <langChildren>0</langChildren>
+        <langDisable>1</langDisable>
+    </meta>
+    <ROOT>
+        <type>array</type>
+        <el>
+            <switchableControllerActions>
+                <TCEforms>
+                    <label>LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function</label>
+                    <config>
+                        <type>select</type>
+                        <items>
+                            <numIndex index="0">
+                                <numIndex index="0">LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function.I.list</numIndex>
+                                <numIndex index="1">DisplayPages->list</numIndex>
+                            </numIndex>
+                            <!-- <numIndex index="1">
+                                <numIndex index="0">LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function.importParentPage</numIndex>
+                                <numIndex index="1">DisplayPages->importParentPage</numIndex>
+                            </numIndex> -->
+                        </items>
+                    </config>
+                </TCEforms>
+            </switchableControllerActions>
+
+            <settings.showtableofcontents>
+                <TCEforms>
+                    <label>LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.showToc</label>
+                    <config>
+                        <type>check</type>
+                        <default>1</default>
+                    </config>
+                </TCEforms>
+            </settings.showtableofcontents>
+            <settings.targetPageId>
+                <TCEforms>
+                    <label>LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.targetPage</label>
+                    <config>
+                        <type>group</type>
+                        <internal_type>db</internal_type>
+                        <allowed>pages</allowed>
+                        <size>2</size>
+                        <maxitems>1</maxitems>
+                        <minitems>1</minitems>
+                        <show_thumbs>1</show_thumbs>
+                    </config>
+                </TCEforms>
+            </settings.targetPageId>
+        </el>
+    </ROOT>
+</T3DataStructure>

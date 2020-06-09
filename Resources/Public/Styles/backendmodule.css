@@ -1,0 +1,105 @@
+/* reset TYPO3 backend styles */
+body#typo3-mod-php {
+	min-height: inherit;
+}
+
+/* common styles */
+.hidden {
+	display: none;
+}
+
+.backendmodule div.inner_section {
+	margin: 10px;
+}
+
+/* doc-header styles */
+#typo3-docheader form {
+	padding: 0px;
+	margin: 0px;
+	display: inline-block;
+}
+#typo3-docheader {
+	padding-top: 8px;
+	height: 48px;
+	background-color: #666;
+	padding-left: 8px;
+}
+
+#typo3-docheader ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#typo3-docheader input[disabled] {
+	cursor: not-allowed;
+}
+
+#typo3-docheader li {
+	display: inline-block;
+}
+#typo3-docheader li.separator {
+	width: 14px;
+}
+
+#typo3-docheader .file_pdf_upload {
+	width: 300px;
+}
+
+#typo3-docheader .white_label {
+	color: #fff;
+}
+
+
+/* common styles forms */
+.backendmodule .input_field {
+	width: 200px;
+}
+
+/* command section styles */
+.backendmodule div.commands {
+	position: absolute;
+	top: 0px;
+	left: 60%;
+	height: 100%;
+	width: 40%;
+	overflow: scroll;
+}
+
+/* editor styles */
+
+.backendmodule div.editor .overlay {
+	position: absolute;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	background: url(../Images/ajax-loader.gif) center center no-repeat rgba(255, 255, 255, 0.8);
+	padding: 0px;
+	margin: 0px;
+}
+
+.backendmodule div.editor {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 60%;
+	outline: 1px solid grey;
+	overflow: scroll;
+}
+
+.backendmodule div.editor .editor_dom span.page_break {
+	border-top: 1px dotted red;
+	display: block;
+}
+
+div.pagetree ul {
+	margin: 0;
+	padding: 0;
+}
+
+div.pagetree li.row {
+	list-style: none;
+	white-space: nowrap;
+}
+

@@ -1,0 +1,23 @@
+<f:be.container loadExtJs="TRUE" loadExtJsTheme="TRUE" loadJQuery="TRUE" enableClickMenu="FALSE">
+
+	<div class="typo3-fullDoc">
+
+		<div id="angular-app">
+			<div ng-controller="MainController">
+
+				<div id="typo3-docheader">
+					<f:render section="topcommands"/>
+				</div>
+
+				<div id="typo3-docbody">
+					<div id="typo3-inner-docbody" class="backendmodule">
+						<f:render section="main"/>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</f:be.container>

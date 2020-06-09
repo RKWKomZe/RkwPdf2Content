@@ -1,0 +1,22 @@
+{namespace bm=BM\BmPdf2content\ViewHelpers}
+<div class="pdf2content_content">
+	<article>
+		<f:for each="{tree}" as="page" iteration="iteration">
+			<f:if condition="{iteration.isFirst}">
+				<f:then></f:then>
+				<f:else>
+					<section>
+
+						<a name="{page.uid}">&nbsp;</a>
+
+						<bm:header class="header-{page.level}" level="{page.level}" >{page.title}</bm:header>
+
+						<bm:header class="header-{page.level}" level="{page.level}" useMapping="FALSE" levelAddition="1" >{page.title}</bm:header>
+
+						<bm:render page="{page.uid}" colpos="{settings.colpos}"/>
+					</section>
+				</f:else>
+			</f:if>
+		</f:for>
+	</article>
+</div>

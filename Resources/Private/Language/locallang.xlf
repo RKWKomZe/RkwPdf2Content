@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2015-01-07T15:00:00Z" product-name="bm_pdf2content">
+        <header/>
+        <body>
+
+            <!-- BACKEND LABELS -->
+            <trans-unit id="be.commands.init_pdf">
+                <source>Init PDF</source>
+            </trans-unit>
+            <trans-unit id="be.commands.render_document">
+                <source>Render</source>
+            </trans-unit>
+            <trans-unit id="be.commands.target_page">
+                <source>Target Page</source>
+            </trans-unit>
+            <trans-unit id="be.commands.target_page">
+                <source>Target Page</source>
+            </trans-unit>
+            <trans-unit id="be.commands.first_page_title">
+                <source>First page title</source>
+            </trans-unit>
+            <trans-unit id="be.commands.document_structure">
+                <source>Document structure</source>
+            </trans-unit>
+
+            <trans-unit id="be.commands.create_main_chapter">
+                <source>Create main chapter</source>
+            </trans-unit>
+            <trans-unit id="be.commands.create_sub_chapter">
+                <source>Create sub chapter</source>
+            </trans-unit>
+            <trans-unit id="be.commands.create_text_element">
+                <source>Create text element</source>
+            </trans-unit>
+            <trans-unit id="be.commands.use_marked_text_as_title">
+                <source>Use marked text as title</source>
+            </trans-unit>
+            <trans-unit id="be.commands.use_marked_text_as_text">
+                <source>Use marked text as text element</source>
+            </trans-unit>
+            <trans-unit id="be.commands.delete_nodes">
+                <source>Delete nodes and sub-nodes</source>
+            </trans-unit>
+
+            <trans-unit id="be.commands.chapter_number">
+                <source>Chapter number</source>
+            </trans-unit>
+            <trans-unit id="be.commands.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="be.commands.text">
+                <source>Text</source>
+            </trans-unit>
+            <trans-unit id="be.commands.save">
+                <source>Save</source>
+            </trans-unit>
+            <trans-unit id="be.commands.cancel">
+                <source>Cancel</source>
+            </trans-unit>
+
+            <!-- BACKEND MESSAGES -->
+            <trans-unit id="be.msg.render_success">
+                <source>Rendering below page with uid %1$s with first page title "%2$s" was successful</source>
+            </trans-unit>
+
+            <!-- BACKEND PDF SERVICE MESSAGES -->
+            <trans-unit id="be.msg.pdfservice_pdf2html_empty">
+                <source>PDF2HTML result is empty!</source>
+            </trans-unit>
+            <trans-unit id="be.msg.pdfservice_pdfbox_missing">
+                <source>PDF BOX file does not exist! Setup path: %1$s</source>
+            </trans-unit>
+            <trans-unit id="be.msg.pdfservice_pdffile_missing">
+                <source>PDF file does not exist!</source>
+            </trans-unit>
+
+            <!-- BACKEND JAVASCRIPT MESSAGES -->
+            <trans-unit id="be.js.label.error">
+                <source>Error</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.error_target_page">
+                <source>Target page not defined! Please choose a page or a folder.</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.error_page_title">
+                <source>Page title not set! Please enter a page title for the first PDF page.</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.error_pdf_not_init">
+                <source>PDF not initialized!</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.error_empty_doc">
+                <source>Empty document structure!</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.error_process_begin">
+                <source>Error while processing pdf</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.error_ajax_request">
+                <source>Could not succeed ajax request!</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.error_pdf_file">
+                <source>Please insert a valid PDF file.</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.confirm_render">
+                <source>Create TYPO3 site and content element structure now? You cannot undo this step!</source>
+            </trans-unit>
+            <trans-unit id="be.js.msg.confirm_init">
+                <source>Do you really want to initialize this PDF?</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

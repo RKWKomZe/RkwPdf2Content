@@ -1,0 +1,19 @@
+/* example toc item styles */
+.pdf2content_toc .toc-item-level-1 {
+	font-size: 120%;
+}
+
+.pdf2content_toc .toc-item-level-2 {
+	font-size: 105%;
+	margin-left: 10px;
+}
+
+.pdf2content_toc .toc-item-level-3 {
+	margin-left: 20px;
+}
+
+.pdf2content_toc .toc-item-level-4 {
+	margin-left: 30px;
+	font-size: 90%;
+	font-style: italic;
+}

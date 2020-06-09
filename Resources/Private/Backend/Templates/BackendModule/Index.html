@@ -1,0 +1,33 @@
+<f:layout name="BackendModule"/>
+
+<f:section name="topcommands">
+	<f:form id="upload_form">
+		<ul>
+			<li class="pdf_upload"><f:form.upload name="pdf[0]" class="file_pdf_upload"/></li>
+			<li class="pdf_upload"><f:form.submit value="{f:translate(key:'be.commands.init_pdf')}" class="submit_upload"/></li>
+			<li class="separator"></li>
+		</ul>
+	</f:form>
+	<f:form action="render" id="render_form">
+		<ul>
+			<li><f:translate key="be.commands.first_page_title"/>:&nbsp;</li>
+			<li><f:form.textfield name="firstPageTitle" class="input_field first_page_title"></f:form.textfield></li>
+			<li class="separator"></li>
+			<li><f:translate key="be.commands.target_page"/>:&nbsp;<strong><span id="target_page_title" class="target_page_title"></span></strong></li>
+			<li><a href="#" class="open_browser"><span class="t3-icon t3-icon-apps t3-icon-apps-pagetree t3-icon-pagetree-folder-default"></span></a></li>
+			<li class="separator"></li>
+			<li><f:form.submit value="{f:translate(key:'be.commands.render_document')}" class="submit_render" additionalAttributes="{ng-disabled:'treeData.length == 0'}"/></li>
+		</ul>
+		<f:form.hidden name="treePayload" value="{{treeData}}" class="tree_payload"  />
+		<f:form.hidden name="targetPageId" id="targetPageId" value="" class="target_page_id" />
+	</f:form>
+</f:section>
+
+<f:section name="main">
+
+	<f:render partial="Editor"/>
+	<f:render partial="Commands"/>
+
+	<div style="clear:both;"></div>
+
+</f:section>

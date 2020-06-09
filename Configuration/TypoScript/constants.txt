@@ -1,0 +1,33 @@
+plugin.tx_bmpdf2content {
+	view {
+		# cat=plugin.tx_bmpdf2content/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:bm_pdf2content/Resources/Private/Templates/
+		# cat=plugin.tx_bmpdf2content/file; type=string; label=Path to partial root (FE)
+		partialRootPath = EXT:bm_pdf2content/Resources/Private/Partials/
+	}
+	settings {
+		# cat=plugin.tx_bmpdf2content//a; type=integer; label=Page column position on rendered pages
+		colpos = 0
+		# cat=plugin.tx_bmpdf2content//a; type=boolean; label=Include CSS?
+		includeCSS = 1
+	}
+}
+
+# Copy persistence and settings configuration to backend module (command controller)
+module.tx_bmpdf2content {
+	view {
+		# cat=module.tx_bmpdf2content/file; type=string; label=Path to layout root (BE)
+		layoutRootPath = EXT:bm_pdf2content/Resources/Private/Backend/Layouts/
+		# cat=module.tx_bmpdf2content/file; type=string; label=Path to partial root (BE)
+		partialRootPath = EXT:bm_pdf2content/Resources/Private/Backend/Partials/
+		# cat=module.tx_bmpdf2content/file; type=string; label=Path to template root (BE)
+		templateRootPath = EXT:bm_pdf2content/Resources/Private/Backend/Templates/
+	}
+	settings {
+		# cat=module.tx_bmpdf2content/file; type=string; label=Full Path to PDF Box jar (BE)
+		pdfBoxPath = EXT:bm_pdf2content/Resources/Private/Libs/pdfbox-app-1.8.7.jar
+		# cat=module.tx_bmpdf2content//a; type=integer; label=Page column position to store records in
+		colpos = 0
+	}
+}
+

@@ -1,0 +1,130 @@
+<div class="commands"  id="editorcolumn">
+
+	<div class="inner_section" id="editorrow" >
+
+		<script type="text/ng-template" id="modalCreateChapterForm.html">
+			<div class="modal-header">
+				<h3 class="modal-title">Kapitel anlegen</h3>
+			</div>
+			<div class="modal-body">
+				<form role="form" novalidate class="simple-form">
+					<!--<div class="form-group">-->
+						<!--<label for="tree.chapterNumber">Kapitelnummer</label>-->
+						<!--<input class="form-control" type="text" ng-model="tree.chapterNumber" />-->
+					<!--</div>-->
+
+					<div class="form-group">
+						<label for="tree.title">Titel</label>
+						<input class="form-control" type="text" ng-model="tree.title" />
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary pull-right" type="submit" ng-click="ok()">speichern</button>
+				<button class="btn btn-default pull-right" type="reset" ng-click="cancel()">zurücknehmen</button>
+			</div>
+		</script>
+
+		<script type="text/ng-template" id="modalCreateElementForm.html">
+			<div class="modal-header">
+				<h3 class="modal-title">Textelement anlegen</h3>
+			</div>
+			<div class="modal-body">
+				<form role="form" novalidate class="simple-form">
+					<!--<div class="form-group">-->
+						<!--<label for="tree.chapterNumber">Kapitelnummer</label>-->
+						<!--<input class="form-control" type="text" ng-model="tree.chapterNumber" />-->
+					<!--</div>-->
+
+					<div class="form-group">
+						<label for="tree.title">Titel</label>
+						<input class="form-control" type="text" ng-model="tree.title" />
+					</div>
+
+					<div class="form-group">
+						<label for="tree.text">Text</label>
+						<text-angular ng-model="tree.text" ta-toolbar="rteConfig"></text-angular>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary pull-right" type="submit" ng-click="ok()">speichern</button>
+				<button class="btn btn-default pull-right" type="reset" ng-click="cancel()">zurücknehmen</button>
+			</div>
+		</script>
+
+		<!-- Nested node template -->
+		<script type="text/ng-template" id="nodes_renderer.html">
+
+			<div class="tree-node {{getClassForNode(node)}}" ng-class="{'focus':isNodeInFocus(node)}" context-menu="onTreeMenuShow(node, this)" data-target="treeMenu">
+				<div class="pull-left tree-handle" ui-tree-handle style="margin-left: 2px;">
+					<span class="glyphicon glyphicon-list"></span>
+				</div>
+				<div class="pull-left" style="margin-left: 2px;">
+					<span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}" ng-click="toggle(this)" style="cursor: pointer;"></span>
+				</div>
+				<div ng-if="'element' === node.type" class="tree-node-content" ng-dblclick="scrollToNode(node)" style="margin-left: 2px;">
+					{{node.chapterNumber}} {{elementText(node) | htmlToText}}
+				</div>
+				<div ng-if="'chapter' === node.type" class="tree-node-content" ng-dblclick="scrollToNode(node)" ng-click="focusNode(node)" style="margin-left: 2px;">
+					{{node.chapterNumber}} {{elementText(node) | htmlToText}}
+				</div>
+			</div>
+
+			<ol ui-tree-nodes="" ng-model="node.nodes" style="width: 100%" ng-class="{hidden: collapsed}">
+				<li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+			</ol>
+		</script>
+
+		<h3><f:translate key="be.commands.document_structure" />:</h3>
+        <div class="treeButtons">
+            <i class="fa fa-plus" title="Kapitel anlegen" ng-click="addEmptyChapter('main')">Kapitel anlegen</i>
+        </div>
+
+		<div ui-tree="treeOptions">
+			<ol ui-tree-nodes="" ng-model="treeData" id="tree-root" style="width: 100%">
+				<li ng-repeat="node in treeData" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+			</ol>
+		</div>
+
+		<br />
+
+		<!-- Drop Down Menu Text -->
+		<div class="dropdown position-fixed" id="textMenu">
+			<ul class="dropdown-menu" role="menu" aria-labelledby="Kapitel">
+				<li ng-class="{'disabled': isMenuDisabled('addMainChapter')}" >
+					<a class="pointer" role="menuitem" tabindex="1" ng-click="addChapter('main')"><f:translate key="be.commands.create_main_chapter" /></a>
+				</li>
+				<li ng-class="{'disabled': isMenuDisabled('addSubChapter')}" >
+					<a class="pointer" role="menuitem" tabindex="1" ng-click="addChapter('sub')"><f:translate key="be.commands.create_sub_chapter" /></a>
+				</li>
+				<li role="presentation" class="divider"></li>
+				<li ng-class="{'disabled': isMenuDisabled('addElement')}" >
+					<a class="pointer" role="menuitem" tabindex="1" ng-click="addElement()"><f:translate key="be.commands.create_text_element" /></a>
+				</li>
+
+				<f:comment>
+					<li role="presentation" class="divider"></li>
+					<li ng-class="{'disabled': isMenuDisabled('textHelper')}" >
+						<a class="pointer" role="menuitem" tabindex="1" ng-click="addTextAsTitle($event)"><f:translate key="be.commands.use_marked_text_as_title" /></a>
+					</li>
+					<li ng-class="{'disabled': isMenuDisabled('textHelper')}" >
+						<a class="pointer" role="menuitem" tabindex="1" ng-click="addTextAsText($event)"><f:translate key="be.commands.use_marked_text_as_text" /></a>
+					</li>
+				</f:comment>
+
+			</ul>
+		</div>
+
+		<!-- Drop Down Menu Tree -->
+		<div class="dropdown position-fixed" id="treeMenu">
+			<ul class="dropdown-menu" role="menu">
+				<li>
+					<a class="pointer" role="menuitem" tabindex="1" ng-click="deleteNode()"><f:translate key="be.commands.delete_nodes" /></a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+</div>

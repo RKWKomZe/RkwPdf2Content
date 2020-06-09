@@ -1,0 +1,31 @@
+<div class="pdf2content_toc">
+
+	<f:for each="{tree}" as="page" iteration="iteration">
+
+		<f:if condition="{iteration.isFirst}">
+
+			<f:then>
+				<header><h1>{page.title}</h1></header>
+			</f:then>
+
+			<f:else>
+
+				<f:if condition="{iteration.index} == 1">
+					<nav>
+				</f:if>
+
+				<f:if condition="{settings.showtableofcontents}">
+					<div class="toc-item-level-{page.level}"><a href="{f:uri.page()}#{page.uid}">{page.title}</a></div>
+				</f:if>
+
+				<f:if condition="{iteration.isLast}">
+					</nav>
+				</f:if>
+
+			</f:else>
+
+		</f:if>
+
+	</f:for>
+
+</div>

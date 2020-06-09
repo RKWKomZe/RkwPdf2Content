@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-18T14:15:57Z" product-name="bm_pdf2contentrkwbasics">
+		<header/>
+		<body>
+
+			<!-- tx_bmpdf2content_domain_model_pages -->
+			<trans-unit id="tx_bmpdf2content_domain_model_pages.tx_bmpdf2content_is_import">
+				<source>Publications</source>
+				<target>Publikation</target>
+			</trans-unit>
+			<trans-unit id="tx_bmpdf2content_domain_model_pages.tx_bmpdf2content_is_import.I.enable">
+				<source>Is Imported</source>
+				<target>Ist eine Publikation</target>
+			</trans-unit>
+
+
+			<!-- Flexform -->
+			<trans-unit id="flexform.displayPages.function">
+				<source>Action</source>
+				<target>Funktion</target>
+			</trans-unit>
+			<trans-unit id="flexform.displayPages.function.I.list">
+				<source>List</source>
+				<target>Inhaltsverzeichnis</target>
+			</trans-unit>
+			<trans-unit id="flexform.displayPages.function.importParentPage">
+				<source>Import Parent Page</source>
+				<target>Import Eltern-Seite</target>
+			</trans-unit>
+			<trans-unit id="flexform.displayPages.showToc">
+				<source>Show Toc</source>
+				<target>Inhaltsverzeichnis anzeigen</target>
+			</trans-unit>
+			<trans-unit id="flexform.displayPages.targetPage">
+				<source>Target Page</source>
+				<source>Zielseite</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
