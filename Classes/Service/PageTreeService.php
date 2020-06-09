@@ -1,6 +1,6 @@
 <?php
 
-namespace BM\BmPdf2content\Service;
+namespace RKW\RkwPdf2content\Service;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
@@ -32,7 +32,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 /**
  *
  *
- * @package BM_PDF2Content
+ * @package RKW_Pdf2Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */

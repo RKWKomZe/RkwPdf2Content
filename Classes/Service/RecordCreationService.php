@@ -1,6 +1,6 @@
 <?php
 
-namespace BM\BmPdf2content\Service;
+namespace RKW\RkwPdf2content\Service;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -37,7 +37,7 @@ define('KEY_ELEMENT_TYPE_TEXT', 'element');
 
 /**
  *
- * @package BM_Pdf2Content
+ * @package RKW_Pdf2Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 2 or later
  *
  */
@@ -172,8 +172,8 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface {
 			$this->pageDataMap['pages'][$pageDataArray['uid']]['pid'] = $pageDataArray['pid'];
 			$this->pageDataMap['pages'][$pageDataArray['uid']]['hidden'] = $pageDataArray['hidden'];
 			$this->pageDataMap['pages'][$pageDataArray['uid']]['disabled'] = $pageDataArray['disabled'];
-            $this->pageDataMap['pages'][$pageDataArray['uid']]['tx_bmpdf2content_is_import'] = $pageDataArray['tx_bmpdf2content_is_import'];
-            $this->pageDataMap['pages'][$pageDataArray['uid']]['tx_bmpdf2content_is_import_sub'] = $pageDataArray['tx_bmpdf2content_is_import_sub'];
+            $this->pageDataMap['pages'][$pageDataArray['uid']]['tx_rkwpdf2content_is_import'] = $pageDataArray['tx_rkwpdf2content_is_import'];
+            $this->pageDataMap['pages'][$pageDataArray['uid']]['tx_rkwpdf2content_is_import_sub'] = $pageDataArray['tx_rkwpdf2content_is_import_sub'];
             if (is_array($pageDataArray['subpages']) && count($pageDataArray['subpages']) > 0) {
 				$this->buildPageDataMap($pageDataArray['subpages']);
 			}
@@ -192,8 +192,8 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface {
 			'pid' => $targetPageId,
 			'hidden' => 1,
 			'disabled' => 0,
-            'tx_bmpdf2content_is_import' => 1,
-            'tx_bmpdf2content_is_import_sub' => 0,
+            'tx_rkwpdf2content_is_import' => 1,
+            'tx_rkwpdf2content_is_import_sub' => 0,
 			'subpages' => array()
 		));
 	}
@@ -217,8 +217,8 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface {
 					'pid' => $parentId,
 					'hidden' => 0,
 					'disabled' => 0,
-                    'tx_bmpdf2content_is_import' => 1,
-                    'tx_bmpdf2content_is_import_sub' => 1
+                    'tx_rkwpdf2content_is_import' => 1,
+                    'tx_rkwpdf2content_is_import_sub' => 1
 
 				);
 				// elements?

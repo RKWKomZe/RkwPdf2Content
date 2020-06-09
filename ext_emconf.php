@@ -1,7 +1,7 @@
 <?php
 
 /***************************************************************
- * Extension Manager/Repository config file for ext "bm_pdf2content".
+ * Extension Manager/Repository config file for ext "RKW_Pdf2Content".
  */
 
 $EM_CONF[$_EXTKEY] = array(
@@ -16,19 +16,16 @@ $EM_CONF[$_EXTKEY] = array(
     'author' => 'Guido Wehner, Birger Stöckelmann',
     'author_email' => 'wehner@bergisch-media.de, stoeckelmann@bergisch-media.de',
     'author_company' => 'Bergisch Media GmbH',
-    'constraints' =>
-        array(
-            'depends' =>
-                array(
-                    'typo3' => '6.2.0-7.6.*',
-                    'extbase' => '6.2.0-7.6.*',
-                    'fluid' => '6.2.0-7.6.*',
-                ),
-            'conflicts' =>
-                array(),
-            'suggests' =>
-                array(),
-        ),
+    'constraints' => [
+        'depends' => [
+            'typo3' => '7.6.0-8.7.99',
+        ],
+        'conflicts' => [
+            'bm_pdf2content' => ''
+        ],
+        'suggests' => [
+        ],
+    ],
     'module' => 'mod1'
 );
 

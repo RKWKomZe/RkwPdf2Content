@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 
 // Configure plugins
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'BM.' . $_EXTKEY,
+    'RKW.' . $_EXTKEY,
     'Pi1',
     array(
         'DisplayPages' => 'list, importParentPage'
@@ -19,4 +19,4 @@ if (!defined('TYPO3_MODE')) {
 
 
 // Add rootline-Fields
-$TYPO3_CONF_VARS['FE']['addRootLineFields'] .= ', tx_bmpdf2content_is_import, tx_bmpdf2content_is_import_sub';
+$TYPO3_CONF_VARS['FE']['addRootLineFields'] .= ', tx_rkwpdf2content_is_import, tx_rkwpdf2content_is_import_sub';

@@ -1,6 +1,6 @@
 <?php
 
-namespace BM\BmPdf2content\Controller;
+namespace RKW\RkwPdf2content\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -31,14 +31,14 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 /**
  *
  *
- * @package BM_Pdf2Content
+ * @package RKW_Pdf2Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 2 or later
  *
  */
 class DisplayPagesController extends ActionController {
 
 	/**
-	 * @var \BM\BmPdf2content\Service\PageTreeService
+	 * @var \RKW\RkwPdf2content\Service\PageTreeService
 	 * @inject
 	 */
 	protected $pageTreeService;
@@ -47,7 +47,7 @@ class DisplayPagesController extends ActionController {
 	/**
 	 * PagesRepository
 	 *
-	 * @var  \BM\BmPdf2content\Domain\Repository\PagesRepository
+	 * @var  \RKW\RkwPdf2content\Domain\Repository\PagesRepository
 	 * @inject
 	 */
 	protected $pagesRepository = NULL;
@@ -80,14 +80,14 @@ class DisplayPagesController extends ActionController {
 		$pid = intval($GLOBALS['TSFE']->id);
 		if (
 			(isset($rootlinePages[count($rootlinePages)-1]))
-			&& (isset($rootlinePages[count($rootlinePages)-1]['tx_bmpdf2content_is_import_sub']))
-			&& ($rootlinePages[count($rootlinePages)-1]['tx_bmpdf2content_is_import_sub'] == 1)
+			&& (isset($rootlinePages[count($rootlinePages)-1]['tx_rkwpdf2content_is_import_sub']))
+			&& ($rootlinePages[count($rootlinePages)-1]['tx_rkwpdf2content_is_import_sub'] == 1)
 		){
 
 			foreach ($rootlinePages as $page => $values) {
 				if (
-					($values['tx_bmpdf2content_is_import'] == 1)
-					&& ($values['tx_bmpdf2content_is_import_sub'] == 0)
+					($values['tx_rkwpdf2content_is_import'] == 1)
+					&& ($values['tx_rkwpdf2content_is_import_sub'] == 0)
 				) {
 					$pid = intval($values['uid']);
 					break;
@@ -97,7 +97,7 @@ class DisplayPagesController extends ActionController {
 		}
 
 		$result = $this->pagesRepository->findByUid($pid);
-		if ($result instanceof \BM\BmPdf2content\Domain\Model\Pages)
+		if ($result instanceof \RKW\RkwPdf2content\Domain\Model\Pages)
 			$this->view->assign('page', $result);
 		if ($this->settings['importParentPage']['showField']) {
 			$getter = 'get' . ucFirst($this->settings['importParentPage']['showField']);

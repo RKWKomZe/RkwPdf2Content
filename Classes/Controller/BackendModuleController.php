@@ -1,6 +1,6 @@
 <?php
 
-namespace BM\BmPdf2content\Controller;
+namespace RKW\RkwPdf2content\Controller;
 
 use TYPO3\CMS\Core\FormProtection\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -34,26 +34,26 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 /**
  *
  *
- * @package BM_PDF2Content
+ * @package RKW_Pdf2Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
 class BackendModuleController extends ActionController {
 
 	/**
-	 * @var \BM\BmPdf2content\Service\PageTreeService
+	 * @var \RKW\RkwPdf2content\Service\PageTreeService
 	 * @inject
 	 */
 	protected $pageTreeService;
 
 	/**
-	 * @var \BM\BmPdf2content\Service\RecordCreationService
+	 * @var \RKW\RkwPdf2content\Service\RecordCreationService
 	 * @inject
 	 */
 	protected $recordCreationService;
 
 	/**
-	 * @var \BM\BmPdf2content\Service\PdfService
+	 * @var \RKW\RkwPdf2content\Service\PdfService
 	 * @inject
 	 */
 	protected $pdfService;
@@ -72,7 +72,7 @@ class BackendModuleController extends ActionController {
 
 	public function initializeAction() {
 		// add inline translations for javascript labels and messages
-		$this->pageRenderer->addInlineLanguageLabelFile('EXT:bm_pdf2content/Resources/Private/Language/locallang.xlf', 'be.js');
+		$this->pageRenderer->addInlineLanguageLabelFile('EXT:rkw_pdf2content/Resources/Private/Language/locallang.xlf', 'be.js');
 	}
 
 	/**
@@ -94,14 +94,14 @@ class BackendModuleController extends ActionController {
 		// add notifications and dialog js file
 		$this->pageRenderer->addJsFile('sysext/backend/Resources/Public/JavaScript/notifications.js', $type='text/javascript', FALSE, FALSE, '', TRUE);
 
-//		$this->pageRenderer->addJsFile('../typo3conf/ext/bm_pdf2content/Resources/Public/Scripts/oldieshim.js');
-		$this->pageRenderer->addJsFile('../typo3conf/ext/bm_pdf2content/Resources/Public/Scripts/vendor.js');
-		$this->pageRenderer->addJsFile('../typo3conf/ext/bm_pdf2content/Resources/Public/Scripts/scripts.js');
-		$this->pageRenderer->addJsFile('../typo3conf/ext/bm_pdf2content/Resources/Public/Scripts/backendmodule.js');
+//		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/oldieshim.js');
+		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/vendor.js');
+		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/scripts.js');
+		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/backendmodule.js');
 
-		$this->pageRenderer->addCssFile('../typo3conf/ext/bm_pdf2content/Resources/Public/Styles/backendmodule.css');
-		$this->pageRenderer->addCssFile('../typo3conf/ext/bm_pdf2content/Resources/Public/Styles/vendor.css');
-		$this->pageRenderer->addCssFile('../typo3conf/ext/bm_pdf2content/Resources/Public/Styles/main.css');
+		$this->pageRenderer->addCssFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Styles/backendmodule.css');
+		$this->pageRenderer->addCssFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Styles/vendor.css');
+		$this->pageRenderer->addCssFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Styles/main.css');
 
 
 		$this->pageRenderer->addJsInlineCode('SelectFromPageBrowser', '
@@ -144,8 +144,8 @@ class BackendModuleController extends ActionController {
 				$configManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
 				$settings = $configManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, $this->extensionName);
 
-				/* @var $pdfService \BM\BmPdf2content\Service\PdfService */
-				$pdfService = GeneralUtility::makeInstance('BM\\BmPdf2content\\Service\\PdfService');
+				/* @var $pdfService \RKW\RkwPdf2content\Service\PdfService */
+				$pdfService = GeneralUtility::makeInstance('RKW\\RkwPdf2content\\Service\\PdfService');
 				$pdfService->setSettings($settings);
 				$dom = $pdfService->parsePdf($tmpFile['tmp_name']);
 

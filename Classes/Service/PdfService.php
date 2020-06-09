@@ -1,6 +1,6 @@
 <?php
 
-namespace BM\BmPdf2content\Service;
+namespace RKW\RkwPdf2content\Service;
 
 use TYPO3\CMS\Core\FormProtection\Exception;
 use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
@@ -35,7 +35,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 /**
  *
  *
- * @package BM_PDF2Content
+ * @package RKW_Pdf2Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
@@ -83,17 +83,17 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface {
 				$resultDom = str_replace('</div></div>', '', $resultDom);
 
 				if($resultDom == '') {
-					throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdf2html_empty', 'BmPdf2content'));
+					throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdf2html_empty', 'Rkwpdf2content'));
 				}
 
 			}
 			else {
-				throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdfbox_missing', 'BmPdf2content', array($this->settings['pdfBoxPath'])));
+				throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdfbox_missing', 'Rkwpdf2content', array($this->settings['pdfBoxPath'])));
 			}
 
 		}
 		else {
-			throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdffile_missing', 'BmPdf2content'));
+			throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdffile_missing', 'Rkwpdf2content'));
 		}
 
 		return $resultDom;

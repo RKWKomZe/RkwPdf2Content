@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-18T14:15:57Z" product-name="bm_pdf2contentrkwbasics">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-18T14:15:57Z" product-name="rkw_pdf2content">
 		<header/>
 		<body>
 
-			<!-- tx_bmpdf2content_domain_model_pages -->
-			<trans-unit id="tx_bmpdf2content_domain_model_pages.tx_bmpdf2content_is_import">
+			<!-- tx_rkwpdf2content_domain_model_pages -->
+			<trans-unit id="tx_rkwpdf2content_domain_model_pages.tx_rkwpdf2content_is_import">
 				<source>Publications</source>
 			</trans-unit>
-			<trans-unit id="tx_bmpdf2content_domain_model_pages.tx_bmpdf2content_is_import.I.enable">
+			<trans-unit id="tx_rkwpdf2content_domain_model_pages.tx_rkwpdf2content_is_import.I.enable">
 				<source>Is Imported</source>
 			</trans-unit>
-			<trans-unit id="tx_bmpdf2content_domain_model_pages.tx_bmpdf2content_is_import_sub">
+			<trans-unit id="tx_rkwpdf2content_domain_model_pages.tx_rkwpdf2content_is_import_sub">
 				<source>Is Import Sub</source>
 			</trans-unit>
 

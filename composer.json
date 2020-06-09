@@ -1,5 +1,5 @@
 {
-  "name": "bm/bm-pdf2content",
+  "name": "rkw/rkw-pdf2content",
   "type": "typo3-cms-extension",
   "description": "Bergisch Media - PDF 2 Content",
   "homepage": "http://typo3.org",
@@ -11,14 +11,14 @@
     "typo3/cms-core": ">=7.6.0,<8.0"
   },
   "extra": {
-    "installer-name": "bm-pdf2content"
+    "installer-name": "rkw-pdf2content"
   },
   "autoload": {
     "psr-4": {
-      "BM\\BmPdf2content\\": "Classes/"
+      "RKW\\RkwPdf2content\\": "Classes/"
     }
   },
   "replace": {
-    "bm-pdf2content": "self.version"
+    "rkw-pdf2content": "self.version"
   }
 }

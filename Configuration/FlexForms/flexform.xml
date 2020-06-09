@@ -8,16 +8,16 @@
         <el>
             <switchableControllerActions>
                 <TCEforms>
-                    <label>LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function</label>
+                    <label>LLL:EXT:rkw_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function</label>
                     <config>
                         <type>select</type>
                         <items>
                             <numIndex index="0">
-                                <numIndex index="0">LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function.I.list</numIndex>
+                                <numIndex index="0">LLL:EXT:rkw_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function.I.list</numIndex>
                                 <numIndex index="1">DisplayPages->list</numIndex>
                             </numIndex>
                             <!-- <numIndex index="1">
-                                <numIndex index="0">LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function.importParentPage</numIndex>
+                                <numIndex index="0">LLL:EXT:rkw_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.function.importParentPage</numIndex>
                                 <numIndex index="1">DisplayPages->importParentPage</numIndex>
                             </numIndex> -->
                         </items>
@@ -27,7 +27,7 @@
 
             <settings.showtableofcontents>
                 <TCEforms>
-                    <label>LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.showToc</label>
+                    <label>LLL:EXT:rkw_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.showToc</label>
                     <config>
                         <type>check</type>
                         <default>1</default>
@@ -36,7 +36,7 @@
             </settings.showtableofcontents>
             <settings.targetPageId>
                 <TCEforms>
-                    <label>LLL:EXT:bm_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.targetPage</label>
+                    <label>LLL:EXT:rkw_pdf2content/Resources/Private/Language/locallang_db.xlf:flexform.displayPages.targetPage</label>
                     <config>
                         <type>group</type>
                         <internal_type>db</internal_type>

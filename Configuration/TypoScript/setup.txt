@@ -5,7 +5,7 @@ config.tx_extbase{
     persistence{
         classes{
 
-            BM\BmPdf2content\Domain\Model\Pages {
+            RKW\RkwPdf2content\Domain\Model\Pages {
                 mapping {
                     tableName = pages
 
@@ -23,7 +23,7 @@ config.tx_extbase{
 
 
 			# set model for mapping
-			BM\BmPdf2content\Domain\Model\PagesLanguageOverlay {
+			RKW\RkwPdf2content\Domain\Model\PagesLanguageOverlay {
 
 				mapping {
 
@@ -47,18 +47,18 @@ config.tx_extbase{
 
 
 # Add styles if not disabled
-[globalVar = LIT:1 = {$plugin.tx_bmpdf2content.settings.includeCSS}]
-	page.includeCSS.bmpdf2content = EXT:bm_pdf2content/Resources/Public/Styles/bmpdf2content.css
+[globalVar = LIT:1 = {$plugin.tx_rkwpdf2content.settings.includeCSS}]
+	page.includeCSS.Rkwpdf2content = EXT:rkw_pdf2content/Resources/Public/Styles/Rkwpdf2content.css
 [global]
 
 # Configure the plugin with constant settings
-plugin.tx_bmpdf2content {
+plugin.tx_rkwpdf2content {
 	view {
-		templateRootPaths.100 = {$plugin.tx_bmpdf2content.view.templateRootPath}
-		partialRootPaths.100 = {$plugin.tx_bmpdf2content.view.partialRootPath}
+		templateRootPaths.100 = {$plugin.tx_rkwpdf2content.view.templateRootPath}
+		partialRootPaths.100 = {$plugin.tx_rkwpdf2content.view.partialRootPath}
 	}
 	settings {
-		colpos = {$plugin.tx_bmpdf2content.settings.colpos}
+		colpos = {$plugin.tx_rkwpdf2content.settings.colpos}
 		# use headerMapping for level to tag mapping
 		headerMapping {
 			1 = h2
@@ -70,15 +70,15 @@ plugin.tx_bmpdf2content {
 }
 
 # Copy persistence and settings configuration to backend module (command controller)
-module.tx_bmpdf2content {
-	persistence < plugin.tx_bmpdf2content.persistence
+module.tx_rkwpdf2content {
+	persistence < plugin.tx_rkwpdf2content.persistence
 	view {
-		layoutRootPaths.100 = {$module.tx_bmpdf2content.view.layoutRootPath}
-		partialRootPaths.100 = {$module.tx_bmpdf2content.view.partialRootPath}
-		templateRootPaths.100 = {$module.tx_bmpdf2content.view.templateRootPath}
+		layoutRootPaths.100 = {$module.tx_rkwpdf2content.view.layoutRootPath}
+		partialRootPaths.100 = {$module.tx_rkwpdf2content.view.partialRootPath}
+		templateRootPaths.100 = {$module.tx_rkwpdf2content.view.templateRootPath}
 	}
 	settings {
-		pdfBoxPath = {$module.tx_bmpdf2content.settings.pdfBoxPath}
-		colpos = {$module.tx_bmpdf2content.settings.colpos}
+		pdfBoxPath = {$module.tx_rkwpdf2content.settings.pdfBoxPath}
+		colpos = {$module.tx_rkwpdf2content.settings.colpos}
 	}
 }

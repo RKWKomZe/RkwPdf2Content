@@ -2,7 +2,7 @@ var PDF2Content = PDF2Content || {};
 
 PDF2Content.BackendModule = (function ($) {
 
-    var _ajaxProcessPdfUrl = TYPO3.settings.ajaxUrls['bm_pdf2content_mod1::processPdf'];
+    var _ajaxProcessPdfUrl = TYPO3.settings.ajaxUrls['RKW_Pdf2Content_mod1::processPdf'];
 
     var _renderForm = '#render_form';
     var _upload_form = '#upload_form';

@@ -1,6 +1,6 @@
 <?php
 
-namespace BM\BmPdf2content\ViewHelpers;
+namespace RKW\RkwPdf2content\ViewHelpers;
 
 /***************************************************************
  *  Copyright notice
@@ -34,7 +34,7 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
  *
  * Allows rendering of defined tags (h1) for a given level
  *
- * @package BM_PDF2Content
+ * @package RKW_Pdf2Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
