@@ -5,7 +5,7 @@
  */
 
 $EM_CONF[$_EXTKEY] = array(
-    'title' => 'PDF2Content',
+    'title' => 'RKW PDF2Content',
     'description' => 'Extract text from PDFs and create TYPO3 sites with it!',
     'category' => 'backend',
     'version' => '0.1.0',

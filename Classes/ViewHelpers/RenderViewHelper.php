@@ -37,9 +37,8 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class RenderViewHelper extends AbstractViewHelper {
-
-
+class RenderViewHelper extends AbstractViewHelper
+{
 	/**
 	 * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer
 	 * @inject
@@ -52,7 +51,8 @@ class RenderViewHelper extends AbstractViewHelper {
 	 * @param integer $colpos
 	 * @return string
 	 */
-	public function render($page, $colpos) {
+	public function render($page, $colpos)
+    {
 		// config array for tt_content
 		$conf = array(
 			'table' => 'tt_content',

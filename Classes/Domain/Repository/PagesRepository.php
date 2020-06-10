@@ -23,9 +23,8 @@ namespace RKW\RkwPdf2content\Domain\Repository;
  * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 
-class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository  {
-
-
+class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
     /**
      * initializeObject
      *

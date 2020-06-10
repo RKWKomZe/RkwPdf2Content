@@ -38,8 +38,8 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class HeaderViewHelper extends AbstractTagBasedViewHelper {
-
+class HeaderViewHelper extends AbstractTagBasedViewHelper
+{
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      * @inject
@@ -61,14 +61,16 @@ class HeaderViewHelper extends AbstractTagBasedViewHelper {
     /**
      * Default attributes init
      */
-    public function initializeArguments() {
+    public function initializeArguments()
+    {
         $this->registerUniversalTagAttributes();
     }
 
     /**
      * Get the plugin settings from Configuration Manager
      */
-    public function initialize() {
+    public function initialize()
+    {
         parent::initialize();
         $this->settings = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
     }
@@ -80,8 +82,8 @@ class HeaderViewHelper extends AbstractTagBasedViewHelper {
      * @param integer $levelAddition
      * @return string
      */
-    public function render($level, $useMapping = TRUE, $levelAddition = 0) {
-
+    public function render($level, $useMapping = TRUE, $levelAddition = 0)
+    {
         if (isset($this->settings['headerMapping'][$level]) && $useMapping == TRUE) {
             $this->tag->setTagName($this->settings['headerMapping'][$level]);
         } else if ($useMapping == FALSE) {

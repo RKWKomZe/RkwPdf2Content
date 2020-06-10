@@ -35,7 +35,8 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 2 or later
  *
  */
-class DisplayPagesController extends ActionController {
+class DisplayPagesController extends ActionController
+{
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\PageTreeService
@@ -57,7 +58,8 @@ class DisplayPagesController extends ActionController {
 	/**
 	 * Default action to display PDF pages from general record storage page settings of this plugin
 	 */
-	public function listAction() {
+	public function listAction()
+    {
 		$pid = $this->settings['targetPageId'];
 		$this->pageTreeService->initFePageTree($pid);
 		$this->view->assign('tree', $this->pageTreeService->getFePageTree());
@@ -69,8 +71,8 @@ class DisplayPagesController extends ActionController {
 	 *
 	 * @return void
 	 */
-	public function importParentPageAction() {
-
+	public function importParentPageAction()
+    {
 		// get PageRepository and rootline
 		$repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
 		$rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
@@ -108,8 +110,5 @@ class DisplayPagesController extends ActionController {
 		}
 
 	}
-
-
-
 
 }

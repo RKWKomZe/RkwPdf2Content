@@ -38,7 +38,8 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BackendModuleController extends ActionController {
+class BackendModuleController extends ActionController
+{
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\PageTreeService
@@ -70,7 +71,8 @@ class BackendModuleController extends ActionController {
 	 */
 	protected $uriBuilderBackend;
 
-	public function initializeAction() {
+	public function initializeAction()
+    {
 		// add inline translations for javascript labels and messages
 		$this->pageRenderer->addInlineLanguageLabelFile('EXT:rkw_pdf2content/Resources/Private/Language/locallang.xlf', 'be.js');
 	}
@@ -78,8 +80,8 @@ class BackendModuleController extends ActionController {
 	/**
 	 * Display the initial view of editor and site chooser
 	 */
-	public function indexAction() {
-
+	public function indexAction()
+    {
 		// get url to element browser
 		$uri = $this->uriBuilderBackend->buildUriFromRoute('wizard_element_browser');
 		$uriString = $uri->getPath().'?'.$uri->getQuery().'&mode=db&bparams=targetPageId|||pages';
@@ -120,8 +122,8 @@ class BackendModuleController extends ActionController {
 	 * @param array $params
 	 * @param \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj
 	 */
-	public function processPdfAjax($params = array(), \TYPO3\CMS\Core\Http\AjaxRequestHandler &$ajaxObj = NULL) {
-
+	public function processPdfAjax($params = array(), \TYPO3\CMS\Core\Http\AjaxRequestHandler &$ajaxObj = NULL)
+    {
 		$ajaxObj->setContentFormat('jsonbody');
 
 		$tmpFile = $_FILES['pdffile'];
@@ -142,8 +144,7 @@ class BackendModuleController extends ActionController {
 				$objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 				/* @var $configManager \TYPO3\CMS\Extbase\Configuration\ConfigurationManager */
 				$configManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
-				$settings = $configManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, $this->extensionName);
-
+                $settings = $configManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, $this->extensionName);
 				/* @var $pdfService \RKW\RkwPdf2content\Service\PdfService */
 				$pdfService = GeneralUtility::makeInstance('RKW\\RkwPdf2content\\Service\\PdfService');
 				$pdfService->setSettings($settings);
@@ -169,7 +170,8 @@ class BackendModuleController extends ActionController {
 	 * @param string $firstPageTitle
 	 * @param string $treePayload
 	 */
-	public function renderAction($targetPageId = 0, $firstPageTitle = '', $treePayload) {
+	public function renderAction($targetPageId = 0, $firstPageTitle = '', $treePayload)
+    {
 
 		try {
 

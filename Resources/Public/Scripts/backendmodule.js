@@ -2,7 +2,7 @@ var PDF2Content = PDF2Content || {};
 
 PDF2Content.BackendModule = (function ($) {
 
-    var _ajaxProcessPdfUrl = TYPO3.settings.ajaxUrls['RKW_Pdf2Content_mod1::processPdf'];
+    var _ajaxProcessPdfUrl = TYPO3.settings.ajaxUrls['rkw_pdf2content_mod1::processPdf'];
 
     var _renderForm = '#render_form';
     var _upload_form = '#upload_form';
@@ -16,10 +16,10 @@ PDF2Content.BackendModule = (function ($) {
      * @private
      */
     var _errorMessage = function (message) {
-        TYPO3.Notification.showMessage(
+        top.TYPO3.Notification.showMessage(
             TYPO3.l10n.localize('be.js.label.error'),
             message,
-            TYPO3.Severity.error,
+            top.TYPO3.Severity.error,
             5
         );
     };

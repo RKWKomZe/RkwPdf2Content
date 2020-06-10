@@ -19,4 +19,4 @@ if (!defined('TYPO3_MODE')) {
 
 
 // Add rootline-Fields
-$TYPO3_CONF_VARS['FE']['addRootLineFields'] .= ', tx_rkwpdf2content_is_import, tx_rkwpdf2content_is_import_sub';
+$GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ', tx_rkwpdf2content_is_import, tx_rkwpdf2content_is_import_sub';

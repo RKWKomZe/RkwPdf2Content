@@ -41,7 +41,8 @@ define('KEY_ELEMENT_TYPE_TEXT', 'element');
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 2 or later
  *
  */
-class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface {
+class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
+{
 
 	/**
 	 * @var array

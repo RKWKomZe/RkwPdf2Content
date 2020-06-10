@@ -8,7 +8,10 @@
   ],
   "version": "1.0.0",
   "require": {
-    "typo3/cms-core": ">=7.6.0,<8.0"
+    "typo3/cms-core": ">=8.7.0,<9.5"
+  },
+  "conflict": {
+    "bm/bm-pdf2content" : ""
   },
   "extra": {
     "installer-name": "rkw-pdf2content"

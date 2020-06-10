@@ -23,8 +23,8 @@ namespace RKW\RkwPdf2content\Domain\Model;
  * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 
-class PagesLanguageOverlay extends Pages{
-
+class PagesLanguageOverlay extends Pages
+{
     /**
      * sysLanguageUid
      * @var int

@@ -39,8 +39,8 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class PdfService implements \TYPO3\CMS\Core\SingletonInterface {
-
+class PdfService implements \TYPO3\CMS\Core\SingletonInterface
+{
 	/**
 	 * @var array
 	 */
