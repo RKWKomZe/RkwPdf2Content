@@ -1,27 +1,27 @@
 {
-  "name": "rkw/rkw-pdf2content",
-  "type": "typo3-cms-extension",
-  "description": "Bergisch Media - PDF 2 Content",
-  "homepage": "http://typo3.org",
-  "license": [
-    "GPL-2.0+"
-  ],
-  "version": "1.0.0",
-  "require": {
-    "typo3/cms-core": ">=8.7.0,<9.5"
-  },
-  "conflict": {
-    "bm/bm-pdf2content" : ""
-  },
-  "extra": {
-    "installer-name": "rkw-pdf2content"
-  },
-  "autoload": {
-    "psr-4": {
-      "RKW\\RkwPdf2content\\": "Classes/"
+    "name": "rkw/rkw-pdf2content",
+    "type": "typo3-cms-extension",
+    "description": "Bergisch Media - PDF 2 Content",
+    "homepage": "http://typo3.org",
+    "license": [
+        "GPL-2.0+"
+    ],
+    "version": "1.0.0",
+    "require": {
+        "typo3/cms-core": ">=8.7.0,<9.5"
+    },
+    "conflict": {
+        "bm/bm-pdf2content" : ""
+    },
+    "extra": {
+        "installer-name": "rkw-pdf2content"
+    },
+    "autoload": {
+        "psr-4": {
+            "RKW\\RkwPdf2content\\": "Classes/"
+        }
+    },
+    "replace": {
+        "rkw-pdf2content": "self.version"
     }
-  },
-  "replace": {
-    "rkw-pdf2content": "self.version"
-  }
 }

@@ -1,214 +1,116 @@
 <?php
-namespace RKW\RkwPdf2content\Domain\Model;
+namespace BM\BmPdf2content\Domain\Model;
 
-/*
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
- */
+    /*
+     * This file is part of the TYPO3 CMS project.
+     *
+     * It is free software; you can redistribute it and/or modify it under
+     * the terms of the GNU General Public License, either version 2
+     * of the License, or any later version.
+     *
+     * For the full copyright and license information, please read the
+     * LICENSE.txt file that was distributed with this source code.
+     *
+     * The TYPO3 project - inspiring people to share!
+     */
 
 /**
  * Class Pages
  *
- * @package RKW_Pdf2Content
+ * @package BM_Pdf2Content
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright Steffen Kroggel, RKW Kompetenzzentrum
  * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 
-class Pages extends \RKW\RkwSearch\Domain\Model\Pages
+class Pages extends \RKW\RkwBasics\Domain\Model\Pages
 {
-    /**
-     * uid
-     * @var int
-     * @validate NotEmpty
-     */
-    protected $uid;
-
-
-    /**
-     * pid
-     * @var int
-     * @validate NotEmpty
-     */
-    protected $pid;
-
-
-    /**
-     * sorting
-     * @var int
-     * @validate NotEmpty
-     */
-    protected $sorting;
-
-
-    /**
-     * title
-     *
-     * @var string
-     */
-    protected $title;
-
-
-    /**
-     * subtitle
-     *
-     * @var string
-     */
-    protected $subtitle;
-
-
-
     /**
      * pubdate
      *
      * @var integer
+     * @deprectaed
      */
     protected $pubDate;
 
 
-	/**
-	 * txRkwpdf2contentIsImport
-	 *
-	 * @var \integer
-	 */
-	protected $txRkwpdf2contentIsImport;
-
-
     /**
-     * txRkwpdf2contentIsImportSub
+     * txBmpdf2contentIsImport
      *
      * @var \integer
      */
-    protected $txRkwpdf2contentIsImportSub;
+    protected $txBmpdf2contentIsImport;
 
 
     /**
-     * Returns the pid
+     * txBmpdf2contentIsImportSub
      *
-     * @return int $pid
+     * @var \integer
      */
-    public function getPid() {
-        return $this->pid;
-        //===
-    }
+    protected $txBmpdf2contentIsImportSub;
 
-
-    /**
-     * Returns the sorting
-     *
-     * @return int $sorting
-     */
-    public function getSorting() {
-        return $this->sorting;
-        //===
-    }
-
-    /**
-     * Returns the title
-     *
-     * @return string $title
-     */
-    public function getTitle() {
-        return $this->title;
-        //===
-    }
-
-    /**
-     * Returns the subtitle
-     *
-     * @return string $subtitle
-     */
-    public function getSubtitle() {
-        return $this->subtitle;
-        //===
-    }
 
     /**
      * Returns the pubDate
      *
      * @return integer
+     * @deprectaed
      */
     public function getPubDate() {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.');
         return $this->pubDate;
     }
+
 
     /**
      * Sets the pubDate
      *
      * @param integer $pubDate
      * @return void
+     * @deprectaed
      */
     public function setPubdate($pubDate) {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.');
         $this->pubDate = $pubDate;
     }
 
 
     /**
-     * Returns the txRkwpdf2contentIsImport
+     * Returns the txBmpdf2contentIsImport
      *
-     * @return \string txRkwpdf2contentIsImport
+     * @return \string txBmpdf2contentIsImport
      */
-    public function getRkwpdf2contentIsImport() {
-        return $this->txRkwpdf2contentIsImport;
+    public function getBmpdf2contentIsImport() {
+        return $this->txBmpdf2contentIsImport;
     }
 
     /**
-     * Sets the txRkwpdf2contentEtrackerIsImport
+     * Sets the txBmpdf2contentEtrackerIsImport
      *
-     * @param \string $txRkwpdf2contentIsImport
-     * @return \string txRkwpdf2contentIsImport
+     * @param \string $txBmpdf2contentIsImport
+     * @return \string txBmpdf2contentIsImport
      */
-    public function settxRkwpdf2contentIsImport($txRkwpdf2contentIsImport) {
-        $this->txRkwpdf2contentIsImport = $txRkwpdf2contentIsImport;
+    public function setTxBmpdf2contentIsImport($txBmpdf2contentIsImport) {
+        $this->txBmpdf2contentIsImport = $txBmpdf2contentIsImport;
     }
 
     /**
-     * Returns the txRkwpdf2contentIsImportSub
+     * Returns the txBmpdf2contentIsImportSub
      *
-     * @return \string txRkwpdf2contentIsImportSub
+     * @return \string txBmpdf2contentIsImportSub
      */
-    public function getRkwpdf2contentIsImportSub() {
-        return $this->txRkwpdf2contentIsImportSub;
+    public function getBmpdf2contentIsImportSub() {
+        return $this->txBmpdf2contentIsImportSub;
     }
 
     /**
-     * Sets the txRkwpdf2contentIsImportSub
+     * Sets the txBmpdf2contentIsImportSub
      *
-     * @param \string $txRkwpdf2contentIsImportSub
-     * @return \string txRkwpdf2contentIsImportSub
+     * @param \string $txBmpdf2contentIsImportSub
+     * @return \string txBmpdf2contentIsImportSub
      */
-    public function settxRkwpdf2contentIsImportSub($txRkwpdf2contentIsImportSub) {
-        $this->txRkwpdf2contentIsImportSub = $txRkwpdf2contentIsImportSub;
-    }
-
-
-    /**
-     * __construct
-     */
-    public function __construct() {
-        //Do not remove the next line: It would break the functionality
-        $this->initStorageObjects();
-    }
-
-    /**
-     * Initializes all ObjectStorage properties
-     * Do not modify this method!
-     * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     *
-     * @return void
-     */
-    protected function initStorageObjects() {
-
+    public function setTxBmpdf2contentIsImportSub($txBmpdf2contentIsImportSub) {
+        $this->txBmpdf2contentIsImportSub = $txBmpdf2contentIsImportSub;
     }
 
 }
-?>

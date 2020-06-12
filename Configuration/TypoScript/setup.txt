@@ -1,9 +1,21 @@
 #############################################################################
 # Tables that are extended
 #############################################################################
-config.tx_extbase{
-    persistence{
-        classes{
+config.tx_extbase {
+    persistence {
+        classes {
+
+            RKW\RkwBasics\Domain\Model\Pages {
+                subclasses {
+                    Tx_BmPdf2content_Pages = BM\BmPdf2content\Domain\Model\Pages
+                }
+            }
+
+            RKW\RkwBasics\Domain\Model\PagesLanguageOverlay {
+                subclasses {
+                    Tx_BmPdf2content_PagesLanguageOverlay = BM\BmPdf2content\Domain\Model\PagesLanguageOverlay
+                }
+            }
 
             RKW\RkwPdf2content\Domain\Model\Pages {
                 mapping {
@@ -20,7 +32,6 @@ config.tx_extbase{
 					}
 				}
             }
-
 
 			# set model for mapping
 			RKW\RkwPdf2content\Domain\Model\PagesLanguageOverlay {
