@@ -3,24 +3,21 @@
     "type": "typo3-cms-extension",
     "description": "Bergisch Media - PDF 2 Content",
     "homepage": "http://typo3.org",
-    "license": [
-        "GPL-2.0+"
-    ],
+    "license": ["GPL-2.0+"],
     "require": {
         "typo3/cms-core": "~8.7.0 || ~9.5.0"
     },
     "conflict": {
         "bm/bm-pdf2content" : ""
     },
-    "extra": {
-        "installer-name": "rkw-pdf2content"
-    },
     "autoload": {
         "psr-4": {
             "RKW\\RkwPdf2content\\": "Classes/"
         }
     },
-    "replace": {
-        "rkw-pdf2content": "self.version"
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "rkw_pdf2content"
+        }
     }
 }
