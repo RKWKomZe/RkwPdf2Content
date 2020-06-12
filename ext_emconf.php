@@ -20,11 +20,9 @@ $EM_CONF[$_EXTKEY] = array(
         'depends' => [
             'typo3' => '7.6.0-8.7.99',
         ],
-        /* makes currently trouble, because other extension having this as dependency
         'conflicts' => [
             'bm_pdf2content' => ''
         ],
-        */
         'suggests' => [
         ],
     ],
