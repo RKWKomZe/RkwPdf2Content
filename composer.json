@@ -6,9 +6,8 @@
     "license": [
         "GPL-2.0+"
     ],
-    "version": "1.0.0",
     "require": {
-        "typo3/cms-core": ">=8.7.0,<9.5"
+        "typo3/cms-core": "~8.7.0 || ~9.5.0"
     },
     "conflict": {
         "bm/bm-pdf2content" : ""
