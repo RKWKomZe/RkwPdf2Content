@@ -7,13 +7,13 @@ config.tx_extbase {
 
             RKW\RkwBasics\Domain\Model\Pages {
                 subclasses {
-                    Tx_BmPdf2content_Pages = BM\BmPdf2content\Domain\Model\Pages
+                    Tx_RkwPdf2content_Pages = RKW\RkwPdf2content\Domain\Model\Pages
                 }
             }
 
             RKW\RkwBasics\Domain\Model\PagesLanguageOverlay {
                 subclasses {
-                    Tx_BmPdf2content_PagesLanguageOverlay = BM\BmPdf2content\Domain\Model\PagesLanguageOverlay
+                    Tx_RkwPdf2content_PagesLanguageOverlay = RKW\RkwPdf2content\Domain\Model\PagesLanguageOverlay
                 }
             }
 

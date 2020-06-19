@@ -1,5 +1,5 @@
 <?php
-namespace BM\BmPdf2content\Domain\Model;
+namespace RKW\RkwPdf2content\Domain\Model;
 
     /*
      * This file is part of the TYPO3 CMS project.
@@ -17,7 +17,7 @@ namespace BM\BmPdf2content\Domain\Model;
 /**
  * Class Pages
  *
- * @package BM_Pdf2Content
+ * @package RKW_Pdf2Content
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright Steffen Kroggel, RKW Kompetenzzentrum
  * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
@@ -29,7 +29,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      * pubdate
      *
      * @var integer
-     * @deprectaed
+     * @deprecated
      */
     protected $pubDate;
 
@@ -38,6 +38,8 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      * txBmpdf2contentIsImport
      *
      * @var \integer
+     * @deprecated Use txRkwpdf2contentIsImport instead
+     * @toDo: Remove. Can be removed, if this field is not longer used by any other extension
      */
     protected $txBmpdf2contentIsImport;
 
@@ -46,15 +48,32 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      * txBmpdf2contentIsImportSub
      *
      * @var \integer
+     * @deprecated Use txRkwpdf2contentIsImport instead
+     * @toDo: Remove. Can be removed, if this field is not longer used by any other extension
      */
     protected $txBmpdf2contentIsImportSub;
+
+    /**
+     * txRkwpdf2contentIsImport
+     *
+     * @var \integer
+     *
+     */
+    protected $txRkwpdf2contentIsImport;
+
+    /**
+     * txRkwpdf2contentIsImportSub
+     *
+     * @var \integer
+     */
+    protected $txRkwpdf2contentIsImportSub;
 
 
     /**
      * Returns the pubDate
      *
      * @return integer
-     * @deprectaed
+     * @deprecated
      */
     public function getPubDate() {
         \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.');
@@ -67,7 +86,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      *
      * @param integer $pubDate
      * @return void
-     * @deprectaed
+     * @deprecated
      */
     public function setPubdate($pubDate) {
         \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.');
@@ -86,12 +105,13 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
 
     /**
      * Sets the txBmpdf2contentEtrackerIsImport
+     * Hint: Migration support - set both. Old and new
      *
      * @param \string $txBmpdf2contentIsImport
-     * @return \string txBmpdf2contentIsImport
      */
     public function setTxBmpdf2contentIsImport($txBmpdf2contentIsImport) {
         $this->txBmpdf2contentIsImport = $txBmpdf2contentIsImport;
+        $this->txRkwpdf2contentIsImport = $txBmpdf2contentIsImport;
     }
 
     /**
@@ -105,12 +125,52 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
 
     /**
      * Sets the txBmpdf2contentIsImportSub
+     * Hint: Migration support - set both. Old and new
      *
      * @param \string $txBmpdf2contentIsImportSub
-     * @return \string txBmpdf2contentIsImportSub
      */
     public function setTxBmpdf2contentIsImportSub($txBmpdf2contentIsImportSub) {
         $this->txBmpdf2contentIsImportSub = $txBmpdf2contentIsImportSub;
+        $this->txRkwpdf2contentIsImportSub = $txBmpdf2contentIsImportSub;
+    }
+
+    /**
+     * Returns the txRkwpdf2contentIsImport
+     *
+     * @return \string txRkwpdf2contentIsImport
+     */
+    public function getRkwpdf2contentIsImport() {
+        return $this->txRkwpdf2contentIsImport;
+    }
+
+    /**
+     * Sets the txRkwpdf2contentEtrackerIsImport
+     * Hint: Migration support - set both. Old and new
+     *
+     * @param \string $txRkwpdf2contentIsImport
+     */
+    public function setTxRkwpdf2contentIsImport($txRkwpdf2contentIsImport) {
+        $this->txRkwpdf2contentIsImport = $txRkwpdf2contentIsImport;
+        $this->txBmpdf2contentIsImport = $txRkwpdf2contentIsImport;
+    }
+
+    /**
+     * Returns the txRkwpdf2contentIsImportSub
+     */
+    public function getRkwpdf2contentIsImportSub() {
+        return $this->txRkwpdf2contentIsImportSub;
+    }
+
+    /**
+     * Sets the txRkwpdf2contentIsImportSub
+     * Hint: Migration support - set both. Old and new
+     *
+     * @param \string $txRkwpdf2contentIsImportSub
+     * @return \string txRkwpdf2contentIsImportSub
+     */
+    public function setTxRkwpdf2contentIsImportSub($txRkwpdf2contentIsImportSub) {
+        $this->txRkwpdf2contentIsImportSub = $txRkwpdf2contentIsImportSub;
+        $this->txBmpdf2contentIsImportSub = $txRkwpdf2contentIsImportSub;
     }
 
 }

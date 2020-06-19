@@ -20,3 +20,6 @@ if (!defined('TYPO3_MODE')) {
 
 // Add rootline-Fields
 $GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ', tx_rkwpdf2content_is_import, tx_rkwpdf2content_is_import_sub';
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['PagesFields']
+    = \RKW\RkwPdf2content\Updates\PagesFieldsUpdater::class;

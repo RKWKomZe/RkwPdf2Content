@@ -1,5 +1,5 @@
 <?php
-namespace BM\BmPdf2content\Domain\Model;
+namespace RKW\RkwPdf2content\Domain\Model;
 
     /*
      * This file is part of the TYPO3 CMS project.
@@ -17,7 +17,7 @@ namespace BM\BmPdf2content\Domain\Model;
 /**
  * Class PagesLanguageOverlay
  *
- * @package BM_Pdf2Content
+ * @package RKW_Pdf2Content
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright Steffen Kroggel, RKW Kompetenzzentrum
  * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
