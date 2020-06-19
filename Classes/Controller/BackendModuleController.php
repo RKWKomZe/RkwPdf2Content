@@ -93,13 +93,10 @@ class BackendModuleController extends ActionController
 
 		$this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Notification');
 
-		// add notifications and dialog js file
-		$this->pageRenderer->addJsFile('sysext/backend/Resources/Public/JavaScript/notifications.js', $type='text/javascript', FALSE, FALSE, '', TRUE);
-
-//		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/oldieshim.js');
-		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/vendor.js');
-		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/scripts.js');
-		$this->pageRenderer->addJsFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Scripts/backendmodule.js');
+        $pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/RkwPdf2content/VendorMod1');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/RkwPdf2content/ScriptsMod1');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/RkwPdf2content/RkwPdf2contentMod1');
 
 		$this->pageRenderer->addCssFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Styles/backendmodule.css');
 		$this->pageRenderer->addCssFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Styles/vendor.css');
@@ -117,52 +114,55 @@ class BackendModuleController extends ActionController
 
 	}
 
-	/**
-	 * Processes the pdf and returns the html dom of the pdf
-	 * @param array $params
-	 * @param \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj
-	 */
-	public function processPdfAjax($params = array(), \TYPO3\CMS\Core\Http\AjaxRequestHandler &$ajaxObj = NULL)
+    /**
+     * Processes the pdf and returns the html dom of the pdf
+     * @param array $params
+     * @param \TYPO3\CMS\Core\Http\Response $ajaxObj
+     * @return \TYPO3\CMS\Core\Http\Response
+     */
+    public function processPdfAjax($params = array(), \TYPO3\CMS\Core\Http\Response &$ajaxObj = NULL)
     {
-		$ajaxObj->setContentFormat('jsonbody');
+        $ajaxObj->withHeader('Content-Type', 'application/json; charset=utf-8');
+        //$ajaxObj->setContentFormat('jsonbody');
 
-		$tmpFile = $_FILES['pdffile'];
+        $tmpFile = $_FILES['pdffile'];
 
-		// not a valid pdf?
-		if (!(is_array($tmpFile) && $tmpFile['type'] == 'application/pdf' || file_exists($tmpFile['tmp_name']))) {
-			$ajaxObj->setContent(array(
+        // not a valid pdf?
+        if (!(is_array($tmpFile) && $tmpFile['type'] == 'application/pdf' || file_exists($tmpFile['tmp_name']))) {
+
+            $message = array(
+                'error' => TRUE,
+                'message' => 'Not a valid PDF!'
+            );
+
+            $ajaxObj->getBody()->write(json_encode($message));
+
+            /*
+            $ajaxObj->setContent(array(
 				'error' => TRUE,
 				'message' => 'Not a valid PDF!'
 			));
-		}
-		else {
+            */
+        }
+        else {
 
-			try {
+            // get typoscript settings for this extension
+            /* @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
+            $objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+            /* @var $configManager \TYPO3\CMS\Extbase\Configuration\ConfigurationManager */
+            $configManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
+            $settings = $configManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, $this->extensionName);
+            /* @var $pdfService \RKW\RkwPdf2content\Service\PdfService */
+            $pdfService = GeneralUtility::makeInstance('RKW\\RkwPdf2content\\Service\\PdfService');
+            $pdfService->setSettings($settings);
+            $dom = $pdfService->parsePdf($tmpFile['tmp_name']);
 
-				// get typoscript settings for this extension
-				/* @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
-				$objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-				/* @var $configManager \TYPO3\CMS\Extbase\Configuration\ConfigurationManager */
-				$configManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
-                $settings = $configManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, $this->extensionName);
-				/* @var $pdfService \RKW\RkwPdf2content\Service\PdfService */
-				$pdfService = GeneralUtility::makeInstance('RKW\\RkwPdf2content\\Service\\PdfService');
-				$pdfService->setSettings($settings);
-				$dom = $pdfService->parsePdf($tmpFile['tmp_name']);
-
-				$ajaxObj->setContent(array('error' => FALSE, 'dom' => $dom));
-
-
-			} catch (Exception $e) {
-				$ajaxObj->setContent(array(
-					'error' => TRUE,
-					'message' => $e->getMessage()
-				));
-			}
-
-		}
-
-	}
+            $ajaxObj->getBody()->write(json_encode($dom));
+            //$ajaxObj->setContent(array('error' => FALSE, 'dom' => $dom));
+        }
+        return $ajaxObj;
+        //===
+    }
 
 	/**
 	 * Renders the given json to pages

@@ -12,6 +12,15 @@
  * Date: 2014-05-01T17:42Z
  */
 
+define([
+           'jquery',
+       ], function($) {
+
+    var VendorMod1 = {};
+
+    VendorMod1.init = function() {
+    };
+
 (function( global, factory ) {
 
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
@@ -57245,3 +57254,4 @@ angular.module('ui.tinymce', [])
       }
     };
   }]);
+});
