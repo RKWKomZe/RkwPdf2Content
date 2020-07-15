@@ -10,7 +10,7 @@
         "typo3/cms-core": "~8.7.0"
     },
     "conflict": {
-        "bm/bm-pdf2content" : ""
+        "bm/bm-pdf2content" : "*"
     },
     "autoload": {
         "psr-4": {
