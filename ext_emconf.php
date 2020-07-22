@@ -13,12 +13,13 @@ $EM_CONF[$_EXTKEY] = array(
     'uploadfolder' => false,
     'createDirs' => '',
     'clearcacheonload' => true,
-    'author' => 'Guido Wehner, Birger Stöckelmann',
-    'author_email' => 'wehner@bergisch-media.de, stoeckelmann@bergisch-media.de',
+    'author' => 'Guido Wehner, Birger Stöckelmann, Maximilian Fäßler,Steffen Kroggel',
+    'author_email' => 'wehner@bergisch-media.de, stoeckelmann@bergisch-media.de, maximilian@faesslerweb.de, developer@steffenkroggel.de',
     'author_company' => 'Bergisch Media GmbH',
     'constraints' => [
         'depends' => [
             'typo3' => '8.7.0-8.7.99',
+            'rkw_basics' => '8.7.0-8.7.99',
         ],
         'conflicts' => [
             'bm_pdf2content' => ''
