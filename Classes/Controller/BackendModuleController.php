@@ -120,7 +120,7 @@ class BackendModuleController extends ActionController
      * @param \TYPO3\CMS\Core\Http\Response $ajaxObj
      * @return \TYPO3\CMS\Core\Http\Response
      */
-    public function processPdfAjax($params = array(), \TYPO3\CMS\Core\Http\Response &$ajaxObj = NULL)
+    public function processPdfAjax($params = [], $ajaxObj = NULL)
     {
         $ajaxObj->withHeader('Content-Type', 'application/json; charset=utf-8');
         //$ajaxObj->setContentFormat('jsonbody');
