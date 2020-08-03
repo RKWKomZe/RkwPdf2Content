@@ -47,7 +47,8 @@ class PageTreeService
 	 * Gets the frontend page tree from starting point
 	 * @param integer $pid
 	 */
-	public function initFePageTree($pid) {
+	public function initFePageTree($pid)
+    {
 
 		$page = $GLOBALS['TSFE']->sys_page->getPage($pid);
 
@@ -65,7 +66,8 @@ class PageTreeService
 	 * Gets the fe page tree
 	 * @return array
 	 */
-	public function getFePageTree() {
+	public function getFePageTree()
+    {
 		return $this->fePageTree;
 	}
 
@@ -73,7 +75,8 @@ class PageTreeService
 	 * Build page tree (recursively)
 	 * @param $pid
 	 */
-	private function processSubtree($pid, $level) {
+	private function processSubtree($pid, $level)
+    {
 		$menu = $GLOBALS['TSFE']->sys_page->getMenu($pid, 'uid, title', 'sorting');
 		if (count($menu) > 0) {
 			foreach ($menu as $menuItem) {

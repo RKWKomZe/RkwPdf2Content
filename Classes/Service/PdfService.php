@@ -49,16 +49,25 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 	/**
 	 * @return array
 	 */
-	public function getSettings() {
+	public function getSettings()
+    {
 		return $this->settings;
 	}
 
 	/**
 	 * @param array $settings
 	 */
-	public function setSettings($settings) {
+	public function setSettings($settings)
+    {
 		$this->settings = $settings;
 	}
+
+    /**
+     * Logger
+     *
+     * @var \TYPO3\CMS\Core\Log\Logger
+     */
+    protected $logger;
 
 	/**
 	 * Parses the PDF with Apache PDF Box and returns the result as HTML DOM
@@ -66,8 +75,8 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 	 * @return mixed|string
 	 * @throws Exception
 	 */
-	public function parsePdf($pdfFile) {
-
+	public function parsePdf($pdfFile)
+    {
 		$resultDom = '';
 		$pdfBoxPath = GeneralUtility::getFileAbsFileName($this->settings['pdfBoxPath']);
 
@@ -83,21 +92,42 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 				$resultDom = str_replace('</div></div>', '', $resultDom);
 
 				if($resultDom == '') {
+                    $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('PDF2HTML Ergebnis ist leer!'));
 					throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdf2html_empty', 'Rkwpdf2content'));
-				}
+                }
 
 			}
 			else {
+                $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('PDF BOX JAR Datei konnte nicht gefunden werden. Setup-Pfad ist: %s',  array($this->settings['pdfBoxPath'])));
 				throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdfbox_missing', 'Rkwpdf2content', array($this->settings['pdfBoxPath'])));
 			}
 
 		}
 		else {
+            $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('Upload- oder Kopier-Problem. PDF-Datei existiert nicht!'));
 			throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdffile_missing', 'Rkwpdf2content'));
 		}
 
 		return $resultDom;
 
 	}
+
+
+
+    /**
+     * Returns logger instance
+     *
+     * @return \TYPO3\CMS\Core\Log\Logger
+     */
+    protected function getLogger()
+    {
+
+        if (!$this->logger instanceof \TYPO3\CMS\Core\Log\Logger) {
+            $this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
+        }
+
+        return $this->logger;
+        //===
+    }
 
 }
