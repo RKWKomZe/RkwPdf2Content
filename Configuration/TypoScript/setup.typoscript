@@ -57,10 +57,10 @@ config.tx_extbase {
 }
 
 
-# Add styles if not disabled
 [globalVar = LIT:1 = {$plugin.tx_rkwpdf2content.settings.includeCSS}]
-	page.includeCSS.Rkwpdf2content = EXT:rkw_pdf2content/Resources/Public/Styles/Rkwpdf2content.css
+	page.includeCSS.Rkwpdf2content = EXT:rkw_pdf2content/Resources/Public/Styles/frontend.css
 [global]
+
 
 # Configure the plugin with constant settings
 plugin.tx_rkwpdf2content {

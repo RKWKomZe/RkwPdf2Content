@@ -9,7 +9,7 @@ plugin.tx_rkwpdf2content {
 		# cat=plugin.tx_rkwpdf2content//a; type=integer; label=Page column position on rendered pages
 		colpos = 0
 		# cat=plugin.tx_rkwpdf2content//a; type=boolean; label=Include CSS?
-		includeCSS = 1
+		includeCSS = 0
 	}
 }
 
