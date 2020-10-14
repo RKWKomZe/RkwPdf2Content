@@ -102,7 +102,7 @@ class DisplayPagesController extends ActionController
 		if ($result instanceof \RKW\RkwPdf2content\Domain\Model\Pages)
 			$this->view->assign('page', $result);
 		if ($this->settings['importParentPage']['showField']) {
-			$getter = 'get' . ucFirst($this->settings['importParentPage']['showField']);
+			$getter = 'get' . ucfirst($this->settings['importParentPage']['showField']);
 
 			if (method_exists($result, $getter))
 				$this->view->assign('field', $result->$getter());

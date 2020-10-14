@@ -47,22 +47,22 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	/**
 	 * @var array
 	 */
-	protected $pageData = array();
+	protected $pageData = [];
 
 	/**
 	 * @var array
 	 */
-	protected $pageDataMap = array();
+	protected $pageDataMap = [];
 
 	/**
 	 * @var array
 	 */
-	protected $elementsData = array();
+	protected $elementsData = [];
 
 	/**
 	 * @var array
 	 */
-	protected $elementsDataMap = array();
+	protected $elementsDataMap = [];
 
 	/**
 	 * @var \TYPO3\CMS\Core\DataHandling\DataHandler
@@ -75,19 +75,27 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	 */
 	private $settings;
 
+
+
 	/**
 	 * @return array
 	 */
-	public function getSettings() {
+	public function getSettings()
+    {
 		return $this->settings;
 	}
+
+
 
 	/**
 	 * @param array $settings
 	 */
-	public function setSettings($settings) {
+	public function setSettings($settings)
+    {
 		$this->settings = $settings;
 	}
+
+
 
 	/**
 	 * Init method
@@ -95,19 +103,22 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	 * @param integer $targetPageId
 	 * @param string $firstPageTitle
 	 */
-	public function init($json, $targetPageId, $firstPageTitle) {
+	public function init($json, $targetPageId, $firstPageTitle)
+    {
 		$this->initFirstPage($targetPageId, $firstPageTitle);
 		$this->processData(json_decode($json, TRUE), $this->pageData[0]['uid'], $this->pageData[0]['subpages']);
 		$this->buildPageDataMap($this->pageData);
 		$this->buildElementsDataMap($this->elementsData);
 	}
 
+
+
 	/**
 	 * Main function - creates pages and elements
 	 * @throws \TYPO3\CMS\Core\Error\Exception
 	 */
-	public function createRecords() {
-
+	public function createRecords()
+    {
 		if (!is_array($this->pageDataMap) || count($this->pageDataMap) == 0) {
 			throw new \TYPO3\CMS\Core\Error\Exception('no page data found!');
 		}
@@ -122,14 +133,14 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 		BackendUtility::setUpdateSignal('updatePageTree');
 	}
 
-	// ----------------------------------------------------------------------
+
 
 	/**
 	 * Build content elements data map for process_datamap
 	 *
 	 */
-	protected function buildElementsDataMap() {
-
+	protected function buildElementsDataMap()
+    {
 		$rdata = array_reverse($this->elementsData);
 
 		foreach ($rdata as $elementData) {
@@ -162,11 +173,14 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 
 	}
 
+
+
 	/**
 	 * Build page data map for process_datamap (recursively)
 	 * @param array $dataArray
 	 */
-	protected function buildPageDataMap($dataArray) {
+	protected function buildPageDataMap($dataArray)
+    {
 		foreach ($dataArray as $pageDataArray) {
 			$this->pageDataMap['pages'][$pageDataArray['uid']] = array();
 			$this->pageDataMap['pages'][$pageDataArray['uid']]['title'] = $pageDataArray['title'];
@@ -181,12 +195,15 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 		}
 	}
 
+
+
 	/**
 	 * Creates the first page entry (parent page for pdf chapters)
 	 * @param string $firstPageTitle
 	 * @param integer $targetPageId
 	 */
-	protected function initFirstPage($targetPageId, $firstPageTitle) {
+	protected function initFirstPage($targetPageId, $firstPageTitle)
+    {
 		array_push($this->pageData, array(
 			'uid' => uniqid('NEW'),
 			'title' => $firstPageTitle,
@@ -199,14 +216,16 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 		));
 	}
 
+
+
 	/**
 	 * Creates flat pages and elements data (recursively)
 	 * @param array $data
 	 * @param integer $parentId
 	 * @param array $parentArray
 	 */
-	protected function processData($data, $parentId, &$parentArray = array()) {
-
+	protected function processData($data, $parentId, &$parentArray = array())
+    {
 		foreach ($data as $dataSet) {
 
 			// chapter (pages) creation
