@@ -6,14 +6,21 @@
 
 			<!-- tx_rkwpdf2content_domain_model_pages -->
 			<trans-unit id="tx_rkwpdf2content_domain_model_pages.tx_rkwpdf2content_is_import">
-				<source>Publications</source>
+				<source>Publication</source>
 				<target>Publikation</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwpdf2content_domain_model_pages.tx_rkwpdf2content_is_import.I.enable">
-				<source>Is Imported</source>
-				<target>Ist eine Publikation</target>
+				<source>Is A Publication Or Part Of It (PDF2Content)</source>
+				<target>Ist eine Publikation oder Teil davon (PDF2Content)</target>
 			</trans-unit>
-
+            <trans-unit id="tx_rkwpdf2content_domain_model_pages.tx_rkwpdf2content_is_import_sub">
+				<source>Publication</source>
+				<target>Publikation</target>
+            </trans-unit>
+			<trans-unit id="tx_rkwpdf2content_domain_model_pages.tx_rkwpdf2content_is_import_sub.I.enable">
+                <source>Is Sub-Page Of A Publication (PDF2Content)</source>
+                <target>Ist Unterseite einer Publikation (PDF2Content)</target>
+			</trans-unit>
 
 			<!-- Flexform -->
 			<trans-unit id="flexform.displayPages.function">
