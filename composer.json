@@ -33,9 +33,9 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
-        "typo3/cms-core": "~8.7.0",
-        "rkw/rkw-basics": "~8.7.0"
+        "php": ">=7.4",
+        "typo3/cms-core": "~9.5.0",
+        "rkw/rkw-basics": "~9.5.0 || dev-feature/upgrade9.5"
     },
     "conflict": {
         "bm/bm-pdf2content" : "*"
