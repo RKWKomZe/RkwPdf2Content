@@ -66,7 +66,7 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 
 	/**
 	 * @var \TYPO3\CMS\Core\DataHandling\DataHandler
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	private $tce;
 

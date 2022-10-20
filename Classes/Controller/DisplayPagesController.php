@@ -2,6 +2,8 @@
 
 namespace RKW\RkwPdf2content\Controller;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -40,7 +42,7 @@ class DisplayPagesController extends ActionController
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\PageTreeService
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	protected $pageTreeService;
 
@@ -49,7 +51,7 @@ class DisplayPagesController extends ActionController
 	 * PagesRepository
 	 *
 	 * @var  \RKW\RkwPdf2content\Domain\Repository\PagesRepository
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	protected $pagesRepository = NULL;
 
@@ -73,11 +75,11 @@ class DisplayPagesController extends ActionController
 	 */
 	public function importParentPageAction()
     {
-		// get PageRepository and rootline
-		$repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-		$rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
+		// get rootline
+        /** @var array $rootlinePages */
+        $rootlinePages = GeneralUtility::makeInstance(RootlineUtility::class, intval($GLOBALS['TSFE']->id))->get();
 
-		// go through all pages and take the one that has a match in the corresponsing field
+        // go through all pages and take the one that has a match in the corresponsing field
 		// but only if the current page IS an import sub page!
 		$pid = intval($GLOBALS['TSFE']->id);
 		if (

@@ -39,7 +39,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      *
      * @var \integer
      * @deprecated Use txRkwpdf2contentIsImport instead
-     * @toDo: Remove. Can be removed, if this field is not longer used by any other extension
+     * @todo Remove. Can be removed, if this field is not longer used by any other extension
      */
     protected $txBmpdf2contentIsImport;
 
@@ -49,7 +49,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      *
      * @var \integer
      * @deprecated Use txRkwpdf2contentIsImport instead
-     * @toDo: Remove. Can be removed, if this field is not longer used by any other extension
+     * @todo Remove. Can be removed, if this field is not longer used by any other extension
      */
     protected $txBmpdf2contentIsImportSub;
 
@@ -76,7 +76,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      * @deprecated
      */
     public function getPubDate() {
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.');
+        trigger_error(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.', E_USER_DEPRECATED);
         return $this->pubDate;
     }
 
@@ -89,7 +89,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      * @deprecated
      */
     public function setPubdate($pubDate) {
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.');
+        trigger_error(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.', E_USER_DEPRECATED);
         $this->pubDate = $pubDate;
     }
 

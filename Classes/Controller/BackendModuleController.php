@@ -43,31 +43,31 @@ class BackendModuleController extends ActionController
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\PageTreeService
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	protected $pageTreeService;
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\RecordCreationService
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	protected $recordCreationService;
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\PdfService
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	protected $pdfService;
 
 	/**
 	 * @var \TYPO3\CMS\Core\Page\PageRenderer
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	protected $pageRenderer;
 
 	/**
 	 * @var \TYPO3\CMS\Backend\Routing\UriBuilder
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
 	protected $uriBuilderBackend;
 
