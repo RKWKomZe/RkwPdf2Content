@@ -3,30 +3,21 @@
 namespace RKW\RkwPdf2content\Service;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
-/***************************************************************
- *  Copyright notice
+/*
+ * This file is part of the TYPO3 CMS project.
  *
- *  (c) 2014 Birger Stöckelmann <stoeckelmann@bergisch-media.de>
- *  All rights reserved
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
  *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * The TYPO3 project - inspiring people to share!
+ */
 
 define('KEY_CHILDREN', 'nodes');
 define('KEY_ELEMENT_TYPE_CHAPTER', 'chapter');
@@ -36,10 +27,12 @@ define('KEY_ELEMENT_TYPE_TEXT', 'element');
 // define other types here...
 
 /**
+ * Class RecordCreationService
  *
- * @package RKW_Pdf2Content
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 2 or later
- *
+ * @author Birger Stöckelmann <stoeckelmann@bergisch-media.de>
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwPdf2Content
+ * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 {
@@ -47,70 +40,77 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	/**
 	 * @var array
 	 */
-	protected $pageData = [];
+	protected array $pageData = [];
+
 
 	/**
 	 * @var array
 	 */
-	protected $pageDataMap = [];
+	protected array $pageDataMap = [];
+
 
 	/**
 	 * @var array
 	 */
-	protected $elementsData = [];
+	protected array $elementsData = [];
+
 
 	/**
 	 * @var array
 	 */
-	protected $elementsDataMap = [];
+	protected array $elementsDataMap = [];
+
 
 	/**
 	 * @var \TYPO3\CMS\Core\DataHandling\DataHandler
-	 * @inject
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	private $tce;
+	private DataHandler $tce;
+
 
 	/**
 	 * @var array
 	 */
-	private $settings;
-
+	private array $settings = [];
 
 
 	/**
 	 * @return array
 	 */
-	public function getSettings()
+	public function getSettings(): array
     {
 		return $this->settings;
 	}
 
 
-
 	/**
 	 * @param array $settings
 	 */
-	public function setSettings($settings)
+	public function setSettings(array $settings): void
     {
 		$this->settings = $settings;
 	}
 
 
-
 	/**
 	 * Init method
+     *
 	 * @param string $json
-	 * @param integer $targetPageId
+	 * @param int $targetPageId
 	 * @param string $firstPageTitle
+     * @return void
 	 */
-	public function init($json, $targetPageId, $firstPageTitle)
+	public function init(string $json, int $targetPageId, string $firstPageTitle): void
     {
 		$this->initFirstPage($targetPageId, $firstPageTitle);
-		$this->processData(json_decode($json, TRUE), $this->pageData[0]['uid'], $this->pageData[0]['subpages']);
+		$this->processData(
+            json_decode($json, true),
+            $this->pageData[0]['uid'],
+            $this->pageData[0]['subpages']
+        );
 		$this->buildPageDataMap($this->pageData);
 		$this->buildElementsDataMap($this->elementsData);
 	}
-
 
 
 	/**
@@ -134,12 +134,12 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	}
 
 
-
 	/**
 	 * Build content elements data map for process_datamap
 	 *
+     * @return void
 	 */
-	protected function buildElementsDataMap()
+	protected function buildElementsDataMap(): void
     {
 		$rdata = array_reverse($this->elementsData);
 
@@ -166,20 +166,19 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 				// prepare other tt_content elements here...
 
 			}
-
 		}
 
 		//die(var_dump($this->elementsDataMap));
-
 	}
-
 
 
 	/**
 	 * Build page data map for process_datamap (recursively)
-	 * @param array $dataArray
+	 *
+     * @param array $dataArray
+     * @return void
 	 */
-	protected function buildPageDataMap($dataArray)
+	protected function buildPageDataMap(array $dataArray): void
     {
 		foreach ($dataArray as $pageDataArray) {
 			$this->pageDataMap['pages'][$pageDataArray['uid']] = array();
@@ -196,24 +195,25 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	}
 
 
-
 	/**
 	 * Creates the first page entry (parent page for pdf chapters)
-	 * @param string $firstPageTitle
-	 * @param integer $targetPageId
+     *
+     * @param int $targetPageId
+     * @param string $firstPageTitle
+     * @return void
 	 */
-	protected function initFirstPage($targetPageId, $firstPageTitle)
+	protected function initFirstPage(int $targetPageId, string $firstPageTitle): void
     {
-		array_push($this->pageData, array(
-			'uid' => uniqid('NEW'),
-			'title' => $firstPageTitle,
-			'pid' => $targetPageId,
-			'hidden' => 1,
-			'disabled' => 0,
+		$this->pageData[] = [
+            'uid' => uniqid('NEW'),
+            'title' => $firstPageTitle,
+            'pid' => $targetPageId,
+            'hidden' => 1,
+            'disabled' => 0,
             'tx_rkwpdf2content_is_import' => 1,
             'tx_rkwpdf2content_is_import_sub' => 0,
-			'subpages' => array()
-		));
+            'subpages' => []
+        ];
 	}
 
 
@@ -221,10 +221,11 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	/**
 	 * Creates flat pages and elements data (recursively)
 	 * @param array $data
-	 * @param integer $parentId
+	 * @param int $parentId
 	 * @param array $parentArray
+     * @return void
 	 */
-	protected function processData($data, $parentId, &$parentArray = array())
+	protected function processData(array $data, int $parentId, array &$parentArray = []): void
     {
 		foreach ($data as $dataSet) {
 

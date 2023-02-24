@@ -18,25 +18,6 @@
                 <source>Is Sub-Page Of A Publication (PDF2Content)</source>
 			</trans-unit>
 
-
-			<!-- Flexform -->
-			<trans-unit id="flexform.displayPages.function">
-				<source>Action</source>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.function.I.list">
-				<source>List</source>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.function.importParentPage">
-				<source>Import Parent Page</source>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.showToc">
-				<source>Show Toc</source>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.targetPage">
-				<source>Target Page</source>
-			</trans-unit>
-
-
 		</body>
 	</file>
 </xliff>

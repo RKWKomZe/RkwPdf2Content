@@ -23,17 +23,3 @@ if (TYPO3_MODE === 'BE') {
 	);
 }
 
-
-$currentVersion = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
-if ($currentVersion < 8000000) {
-    # ---------------------------------------------------------------------------
-    # Add ajax handler for backend module upload
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler(
-        'rkw_pdf2content_mod1::processPdf',
-        'RKW\\RkwPdf2content\\Controller\\BackendModuleController->processPdfAjax'
-    );
-} else {
-    // TAKE A LOOK HERE: /rkw_pdf2content/Configuration/Backend/AjaxRoutes.php
-}
-
-?>

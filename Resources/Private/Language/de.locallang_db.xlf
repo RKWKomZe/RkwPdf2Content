@@ -22,27 +22,6 @@
                 <target>Ist Unterseite einer Publikation (PDF2Content)</target>
 			</trans-unit>
 
-			<!-- Flexform -->
-			<trans-unit id="flexform.displayPages.function">
-				<source>Action</source>
-				<target>Funktion</target>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.function.I.list">
-				<source>List</source>
-				<target>Inhaltsverzeichnis</target>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.function.importParentPage">
-				<source>Import Parent Page</source>
-				<target>Import Eltern-Seite</target>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.showToc">
-				<source>Show Toc</source>
-				<target>Inhaltsverzeichnis anzeigen</target>
-			</trans-unit>
-			<trans-unit id="flexform.displayPages.targetPage">
-				<source>Target Page</source>
-				<source>Zielseite</source>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>
