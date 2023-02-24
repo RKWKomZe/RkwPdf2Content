@@ -6,10 +6,7 @@ plugin.tx_rkwpdf2content {
 		partialRootPath = EXT:rkw_pdf2content/Resources/Private/Partials/
 	}
 	settings {
-		# cat=plugin.tx_rkwpdf2content//a; type=integer; label=Page column position on rendered pages
-		colpos = 0
-		# cat=plugin.tx_rkwpdf2content//a; type=boolean; label=Include CSS?
-		includeCSS = 0
+
 	}
 }
 
@@ -26,6 +23,7 @@ module.tx_rkwpdf2content {
 	settings {
 		# cat=module.tx_rkwpdf2content/file; type=string; label=Full Path to PDF Box jar (BE)
 		pdfBoxPath = EXT:rkw_pdf2content/Resources/Private/Libs/pdfbox-app-1.8.7.jar
+
 		# cat=module.tx_rkwpdf2content//a; type=integer; label=Page column position to store records in
 		colpos = 0
 	}

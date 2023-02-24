@@ -1,42 +1,40 @@
 <?php
-
 namespace RKW\RkwPdf2content\Controller;
 
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
+
+use RKW\RkwPdf2content\Service\PageTreeService;
+use RKW\RkwPdf2content\Service\PdfService;
+use RKW\RkwPdf2content\Service\RecordCreationService;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\FormProtection\Exception;
+use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2014 Birger Stöckelmann <stoeckelmann@bergisch-media.de>
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
-
 /**
+ * Class BackendModuleController
  *
- *
- * @package RKW_Pdf2Content
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
+ * @author Birger Stöckelmann <stoeckelmann@bergisch-media.de>
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwPdf2Content
+ * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 class BackendModuleController extends ActionController
 {
@@ -45,42 +43,54 @@ class BackendModuleController extends ActionController
 	 * @var \RKW\RkwPdf2content\Service\PageTreeService
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected $pageTreeService;
+	protected PageTreeService $pageTreeService;
+
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\RecordCreationService
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected $recordCreationService;
+	protected RecordCreationService $recordCreationService;
+
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\PdfService
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected $pdfService;
+	protected PdfService $pdfService;
+
 
 	/**
 	 * @var \TYPO3\CMS\Core\Page\PageRenderer
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected $pageRenderer;
+	protected PageRenderer $pageRenderer;
+
 
 	/**
 	 * @var \TYPO3\CMS\Backend\Routing\UriBuilder
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected $uriBuilderBackend;
+	protected UriBuilder $uriBuilderBackend;
+
 
 	public function initializeAction()
     {
 		// add inline translations for javascript labels and messages
-		$this->pageRenderer->addInlineLanguageLabelFile('EXT:rkw_pdf2content/Resources/Private/Language/locallang.xlf', 'be.js');
+		$this->pageRenderer->addInlineLanguageLabelFile(
+            'EXT:rkw_pdf2content/Resources/Private/Language/locallang.xlf',
+            'be.js'
+        );
 	}
 
-	/**
-	 * Display the initial view of editor and site chooser
-	 */
-	public function indexAction()
+
+    /**
+     * Display the initial view of editor and site chooser
+     *
+     * @return void
+     * @throws \TYPO3\CMS\Backend\Routing\Exception\RouteNotFoundException
+     */
+	public function indexAction(): void
     {
 		// get url to element browser
 		$uri = $this->uriBuilderBackend->buildUriFromRoute('wizard_element_browser');
@@ -102,7 +112,6 @@ class BackendModuleController extends ActionController
 		$this->pageRenderer->addCssFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Styles/vendor.css');
 		$this->pageRenderer->addCssFile('../typo3conf/ext/rkw_pdf2content/Resources/Public/Styles/main.css');
 
-
 		$this->pageRenderer->addJsInlineCode('SelectFromPageBrowser', '
 			var browserWin="";
 			function setFormValueFromBrowseWin(fName,value,label,exclusiveValues){
@@ -111,16 +120,18 @@ class BackendModuleController extends ActionController
 				$(\'#\'+fName).val(value);
 			}');
 
-
 	}
+
 
     /**
      * Processes the pdf and returns the html dom of the pdf
+     *
      * @param array $params
-     * @param \TYPO3\CMS\Core\Http\Response $ajaxObj
+     * @param \TYPO3\CMS\Core\Http\Response|null $ajaxObj
      * @return \TYPO3\CMS\Core\Http\Response
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function processPdfAjax($params = [], \TYPO3\CMS\Core\Http\Response $ajaxObj = NULL)
+    public function processPdfAjax(array $params = [], \TYPO3\CMS\Core\Http\Response $ajaxObj = null): Response
     {
         $ajaxObj->withHeader('Content-Type', 'application/json; charset=utf-8');
         //$ajaxObj->setContentFormat('jsonbody');
@@ -148,12 +159,17 @@ class BackendModuleController extends ActionController
 
             // get typoscript settings for this extension
             /* @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
-            $objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+
             /* @var $configManager \TYPO3\CMS\Extbase\Configuration\ConfigurationManager */
-            $configManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
-            $settings = $configManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, $this->extensionName);
+            $configManager = $objectManager->get(ConfigurationManager::class);
+            $settings = $configManager->getConfiguration(
+                ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+                $this->extensionName
+            );
+
             /* @var $pdfService \RKW\RkwPdf2content\Service\PdfService */
-            $pdfService = GeneralUtility::makeInstance('RKW\\RkwPdf2content\\Service\\PdfService');
+            $pdfService = GeneralUtility::makeInstance(PdfService::class);
             $pdfService->setSettings($settings);
             $dom = $pdfService->parsePdf($tmpFile['tmp_name']);
 
@@ -161,20 +177,22 @@ class BackendModuleController extends ActionController
             //$ajaxObj->setContent(array('error' => FALSE, 'dom' => $dom));
         }
         return $ajaxObj;
-        //===
     }
 
-	/**
-	 * Renders the given json to pages
-	 * @param integer $targetPageId
-	 * @param string $firstPageTitle
-	 * @param string $treePayload
-	 */
-	public function renderAction($targetPageId = 0, $firstPageTitle = '', $treePayload)
+
+    /**
+     * Renders the given json to pages
+     *
+     * @param int $targetPageId
+     * @param string $firstPageTitle
+     * @param string $treePayload
+     * @return void
+     * @throws \TYPO3\CMS\Core\Error\Exception
+     */
+	public function renderAction(int $targetPageId = 0, string $firstPageTitle = '', string $treePayload = ''): void
     {
 
 		try {
-
 			$this->recordCreationService->setSettings($this->settings);
 			$this->recordCreationService->init($treePayload, $targetPageId, $firstPageTitle);
 			$this->recordCreationService->createRecords();

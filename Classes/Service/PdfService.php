@@ -1,81 +1,76 @@
 <?php
-
 namespace RKW\RkwPdf2content\Service;
 
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
+
 use TYPO3\CMS\Core\FormProtection\Exception;
-use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
+use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2014 Birger Stöckelmann <stoeckelmann@bergisch-media.de>
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
-
 /**
+ * Class PdfService
  *
- *
- * @package RKW_Pdf2Content
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
+ * @author Birger Stöckelmann <stoeckelmann@bergisch-media.de>
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwPdf2Content
+ * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 {
+
 	/**
 	 * @var array
 	 */
-	protected $settings;
+	protected array $settings = [];
 
-	/**
-	 * @return array
-	 */
-	public function getSettings()
-    {
-		return $this->settings;
-	}
-
-	/**
-	 * @param array $settings
-	 */
-	public function setSettings($settings)
-    {
-		$this->settings = $settings;
-	}
 
     /**
      * Logger
      *
-     * @var \TYPO3\CMS\Core\Log\Logger
+     * @var \TYPO3\CMS\Core\Log\Logger|null
      */
-    protected $logger;
+    protected ?Logger $logger = null;
+
+
+	/**
+	 * @return array
+	 */
+	public function getSettings(): array
+    {
+		return $this->settings;
+	}
+
+
+	/**
+	 * @param array $settings
+	 */
+	public function setSettings(array $settings): void
+    {
+		$this->settings = $settings;
+	}
+
 
 	/**
 	 * Parses the PDF with Apache PDF Box and returns the result as HTML DOM
-	 * @param $pdfFile
-	 * @return mixed|string
+	 *
+     * @param string $pdfFile
+	 * @return string
 	 * @throws Exception
 	 */
-	public function parsePdf($pdfFile)
+	public function parsePdf(string $pdfFile): string
     {
 		$resultDom = '';
 		$pdfBoxPath = GeneralUtility::getFileAbsFileName($this->settings['pdfBoxPath']);
@@ -92,26 +87,51 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 				$resultDom = str_replace('</div></div>', '', $resultDom);
 
 				if($resultDom == '') {
-                    $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('PDF2HTML Ergebnis ist leer!'));
-					throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdf2html_empty', 'Rkwpdf2content'));
+                    $this->getLogger()->log(
+                        \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                        'PDF2HTML Ergebnis ist leer!'
+                    );
+					throw new Exception(
+                        LocalizationUtility::translate(
+                            'be.msg.pdfservice_pdf2html_empty',
+                            'Rkwpdf2content'
+                        )
+                    );
                 }
-
 			}
 			else {
-                $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('PDF BOX JAR Datei konnte nicht gefunden werden. Setup-Pfad ist: %s',  array($this->settings['pdfBoxPath'])));
-				throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdfbox_missing', 'Rkwpdf2content', array($this->settings['pdfBoxPath'])));
+                $this->getLogger()->log(
+                    \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                    sprintf(
+                        'PDF BOX JAR Datei konnte nicht gefunden werden. Setup-Pfad ist: %s',
+                        array($this->settings['pdfBoxPath'])
+                    )
+                );
+				throw new Exception(
+                    LocalizationUtility::translate(
+                        'be.msg.pdfservice_pdfbox_missing',
+                        'Rkwpdf2content',
+                        array($this->settings['pdfBoxPath'])
+                    )
+                );
 			}
 
 		}
 		else {
-            $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('Upload- oder Kopier-Problem. PDF-Datei existiert nicht!'));
-			throw new Exception(LocalizationUtility::translate('be.msg.pdfservice_pdffile_missing', 'Rkwpdf2content'));
+            $this->getLogger()->log(
+                \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                'Upload- oder Kopier-Problem. PDF-Datei existiert nicht!'
+            );
+			throw new Exception(
+                LocalizationUtility::translate(
+                    'be.msg.pdfservice_pdffile_missing',
+                    'Rkwpdf2content'
+                )
+            );
 		}
 
 		return $resultDom;
-
 	}
-
 
 
     /**
@@ -119,15 +139,14 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @return \TYPO3\CMS\Core\Log\Logger
      */
-    protected function getLogger()
+    protected function getLogger(): Logger
     {
 
         if (!$this->logger instanceof \TYPO3\CMS\Core\Log\Logger) {
-            $this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
+            $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
         }
 
         return $this->logger;
-        //===
     }
 
 }

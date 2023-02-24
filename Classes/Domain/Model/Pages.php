@@ -1,176 +1,84 @@
 <?php
 namespace RKW\RkwPdf2content\Domain\Model;
 
-    /*
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
  * Class Pages
  *
- * @package RKW_Pdf2Content
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Steffen Kroggel, RKW Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwPdf2Content
  * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 
-class Pages extends \RKW\RkwBasics\Domain\Model\Pages
+class Pages extends \Madj2k\CoreExtended\Domain\Model\Pages
 {
+
     /**
-     * pubdate
-     *
-     * @var integer
-     * @deprecated
+     * @var bool
      */
-    protected $pubDate;
+    protected bool $txRkwpdf2contentIsImport = false;
 
 
     /**
-     * txBmpdf2contentIsImport
-     *
-     * @var \integer
-     * @deprecated Use txRkwpdf2contentIsImport instead
-     * @todo Remove. Can be removed, if this field is not longer used by any other extension
+     * @var bool
      */
-    protected $txBmpdf2contentIsImport;
+    protected bool $txRkwpdf2contentIsImportSub = false;
 
-
-    /**
-     * txBmpdf2contentIsImportSub
-     *
-     * @var \integer
-     * @deprecated Use txRkwpdf2contentIsImport instead
-     * @todo Remove. Can be removed, if this field is not longer used by any other extension
-     */
-    protected $txBmpdf2contentIsImportSub;
-
-    /**
-     * txRkwpdf2contentIsImport
-     *
-     * @var \integer
-     *
-     */
-    protected $txRkwpdf2contentIsImport;
-
-    /**
-     * txRkwpdf2contentIsImportSub
-     *
-     * @var \integer
-     */
-    protected $txRkwpdf2contentIsImportSub;
-
-
-    /**
-     * Returns the pubDate
-     *
-     * @return integer
-     * @deprecated
-     */
-    public function getPubDate() {
-        trigger_error(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.', E_USER_DEPRECATED);
-        return $this->pubDate;
-    }
-
-
-    /**
-     * Sets the pubDate
-     *
-     * @param integer $pubDate
-     * @return void
-     * @deprecated
-     */
-    public function setPubdate($pubDate) {
-        trigger_error(__CLASS__ . ':' . __METHOD__ . ' will be removed soon. Use $this->getLastUpdated instead.', E_USER_DEPRECATED);
-        $this->pubDate = $pubDate;
-    }
-
-
-    /**
-     * Returns the txBmpdf2contentIsImport
-     *
-     * @return \string txBmpdf2contentIsImport
-     */
-    public function getBmpdf2contentIsImport() {
-        return $this->txBmpdf2contentIsImport;
-    }
-
-    /**
-     * Sets the txBmpdf2contentEtrackerIsImport
-     * Hint: Migration support - set both. Old and new
-     *
-     * @param \string $txBmpdf2contentIsImport
-     */
-    public function setTxBmpdf2contentIsImport($txBmpdf2contentIsImport) {
-        $this->txBmpdf2contentIsImport = $txBmpdf2contentIsImport;
-        $this->txRkwpdf2contentIsImport = $txBmpdf2contentIsImport;
-    }
-
-    /**
-     * Returns the txBmpdf2contentIsImportSub
-     *
-     * @return \string txBmpdf2contentIsImportSub
-     */
-    public function getBmpdf2contentIsImportSub() {
-        return $this->txBmpdf2contentIsImportSub;
-    }
-
-    /**
-     * Sets the txBmpdf2contentIsImportSub
-     * Hint: Migration support - set both. Old and new
-     *
-     * @param \string $txBmpdf2contentIsImportSub
-     */
-    public function setTxBmpdf2contentIsImportSub($txBmpdf2contentIsImportSub) {
-        $this->txBmpdf2contentIsImportSub = $txBmpdf2contentIsImportSub;
-        $this->txRkwpdf2contentIsImportSub = $txBmpdf2contentIsImportSub;
-    }
 
     /**
      * Returns the txRkwpdf2contentIsImport
      *
-     * @return \string txRkwpdf2contentIsImport
+     * @return bool
      */
-    public function getRkwpdf2contentIsImport() {
+    public function getRkwpdf2contentIsImport(): bool
+    {
         return $this->txRkwpdf2contentIsImport;
     }
 
+
     /**
      * Sets the txRkwpdf2contentEtrackerIsImport
-     * Hint: Migration support - set both. Old and new
      *
-     * @param \string $txRkwpdf2contentIsImport
+     * @param bool $txRkwpdf2contentIsImport
      */
-    public function setTxRkwpdf2contentIsImport($txRkwpdf2contentIsImport) {
+    public function setTxRkwpdf2contentIsImport(bool $txRkwpdf2contentIsImport) {
         $this->txRkwpdf2contentIsImport = $txRkwpdf2contentIsImport;
-        $this->txBmpdf2contentIsImport = $txRkwpdf2contentIsImport;
     }
+
 
     /**
      * Returns the txRkwpdf2contentIsImportSub
+     *
+     * @return bool
      */
-    public function getRkwpdf2contentIsImportSub() {
+    public function getRkwpdf2contentIsImportSub(): bool
+    {
         return $this->txRkwpdf2contentIsImportSub;
     }
 
+
     /**
      * Sets the txRkwpdf2contentIsImportSub
-     * Hint: Migration support - set both. Old and new
      *
-     * @param \string $txRkwpdf2contentIsImportSub
-     * @return \string txRkwpdf2contentIsImportSub
+     * @param bool $txRkwpdf2contentIsImportSub
+     * @return void
      */
-    public function setTxRkwpdf2contentIsImportSub($txRkwpdf2contentIsImportSub) {
+    public function setTxRkwpdf2contentIsImportSub(bool $txRkwpdf2contentIsImportSub): void
+    {
         $this->txRkwpdf2contentIsImportSub = $txRkwpdf2contentIsImportSub;
-        $this->txBmpdf2contentIsImportSub = $txRkwpdf2contentIsImportSub;
     }
 
 }

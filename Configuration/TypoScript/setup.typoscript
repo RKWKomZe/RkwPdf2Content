@@ -5,15 +5,9 @@ config.tx_extbase {
     persistence {
         classes {
 
-            RKW\RkwBasics\Domain\Model\Pages {
+            Madj2k\CoreExtended\Domain\Model\Pages {
                 subclasses {
                     Tx_RkwPdf2content_Pages = RKW\RkwPdf2content\Domain\Model\Pages
-                }
-            }
-
-            RKW\RkwBasics\Domain\Model\PagesLanguageOverlay {
-                subclasses {
-                    Tx_RkwPdf2content_PagesLanguageOverlay = RKW\RkwPdf2content\Domain\Model\PagesLanguageOverlay
                 }
             }
 
@@ -32,51 +26,20 @@ config.tx_extbase {
 					}
 				}
             }
-
-			# set model for mapping
-			RKW\RkwPdf2content\Domain\Model\PagesLanguageOverlay {
-
-				mapping {
-
-					# set table name to map to
-					tableName = pages_language_overlay
-
-					# on pages tables it's the doktype
-					# if we set an value, we filter by it
-					# if do not set anything, all pages are found
-					recordType =
-
-					# mapping to properties of class
-					columns {
-						sys_language_uid.mapOnProperty = sysLanguageUid
-					}
-				}
-			}
-    	}
+ 	    }
     }
 }
-
-
-[globalVar = LIT:1 = {$plugin.tx_rkwpdf2content.settings.includeCSS}]
-	page.includeCSS.Rkwpdf2content = EXT:rkw_pdf2content/Resources/Public/Styles/frontend.css
-[global]
 
 
 # Configure the plugin with constant settings
 plugin.tx_rkwpdf2content {
 	view {
+		layoutRootPaths.100 = {$plugin.tx_rkwpdf2content.view.layoutRootPath}
 		templateRootPaths.100 = {$plugin.tx_rkwpdf2content.view.templateRootPath}
 		partialRootPaths.100 = {$plugin.tx_rkwpdf2content.view.partialRootPath}
 	}
 	settings {
-		colpos = {$plugin.tx_rkwpdf2content.settings.colpos}
-		# use headerMapping for level to tag mapping
-		headerMapping {
-			1 = h2
-			2 = h3
-			3 = h4
-			4 = h5
-		}
+
 	}
 }
 

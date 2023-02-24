@@ -14,12 +14,15 @@ namespace RKW\RkwPdf2content\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use function PHPUnit\Framework\assertFalse;
+
 /**
  * Class PagesRepository
  *
- * @package RKW_Pdf2Content
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Steffen Kroggel, RKW Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwPdf2Content
  * @licence http://www.gnu.org/copyleft/gpl.htm GNU General Public License, version 2 or later
  */
 
@@ -30,14 +33,14 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      *
      * @return void
      */
-    public function initializeObject() {
+    public function initializeObject(): void {
 
         /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
-        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
 
         // don't add the pid constraint
-        $querySettings->setRespectStoragePage(FALSE);
-        $querySettings->setIgnoreEnableFields(TRUE);
+        $querySettings->setRespectStoragePage(false);
+        $querySettings->setIgnoreEnableFields(true);
 
         $this->setDefaultQuerySettings($querySettings);
     }
