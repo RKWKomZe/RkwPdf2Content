@@ -78,8 +78,15 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 		// pdf path found?
 		if (file_exists($pdfFile)) {
 
+            $this->getLogger()->log(
+                \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                $pdfFile
+            );
 			if (file_exists($pdfBoxPath)) {
-
+                $this->getLogger()->log(
+                    \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                    $pdfBoxPath
+                );
 				$command = 'java -jar ' . $pdfBoxPath . ' ExtractText -html -console -ignoreBeads ' . $pdfFile;
 				$resultDom = shell_exec($command);
 				$resultDom = strip_tags($resultDom, '<p><b><i><u><div>');
@@ -89,7 +96,7 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 				if($resultDom == '') {
                     $this->getLogger()->log(
                         \TYPO3\CMS\Core\Log\LogLevel::ERROR,
-                        'PDF2HTML Ergebnis ist leer!'
+                        'PDF2HTML result is empty. Maybe Java is not installed. Try "apt install default-jre"'
                     );
 					throw new Exception(
                         LocalizationUtility::translate(
@@ -103,7 +110,7 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
                 $this->getLogger()->log(
                     \TYPO3\CMS\Core\Log\LogLevel::ERROR,
                     sprintf(
-                        'PDF BOX JAR Datei konnte nicht gefunden werden. Setup-Pfad ist: %s',
+                        'PDF-BOX JAR- file could not be found. Given path is: %s',
                         array($this->settings['pdfBoxPath'])
                     )
                 );
@@ -120,7 +127,7 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 		else {
             $this->getLogger()->log(
                 \TYPO3\CMS\Core\Log\LogLevel::ERROR,
-                'Upload- oder Kopier-Problem. PDF-Datei existiert nicht!'
+                'Possible problem with upload. The given PDF-file could not be found!'
             );
 			throw new Exception(
                 LocalizationUtility::translate(
