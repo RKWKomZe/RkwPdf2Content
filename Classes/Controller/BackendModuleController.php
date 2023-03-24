@@ -126,12 +126,12 @@ class BackendModuleController extends ActionController
     /**
      * Processes the pdf and returns the html dom of the pdf
      *
-     * @param array $params
+     * @param array|object $params
      * @param \TYPO3\CMS\Core\Http\Response|null $ajaxObj
      * @return \TYPO3\CMS\Core\Http\Response
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function processPdfAjax(array $params = [], \TYPO3\CMS\Core\Http\Response $ajaxObj = null): Response
+    public function processPdfAjax($params = [], \TYPO3\CMS\Core\Http\Response $ajaxObj = null): Response
     {
         $ajaxObj->withHeader('Content-Type', 'application/json; charset=utf-8');
         //$ajaxObj->setContentFormat('jsonbody');

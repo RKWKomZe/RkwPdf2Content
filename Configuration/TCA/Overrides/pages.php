@@ -41,4 +41,4 @@ $tempColumnsPages = array(
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages',$tempColumnsPages);
 
 // Add field to the existing palette
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_rkwbasics_extended', 'tx_rkwpdf2content_is_import,tx_rkwpdf2content_is_import_sub');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'abstract','--linebreak--,tx_rkwpdf2content_is_import,tx_rkwpdf2content_is_import_sub','after:abstract');

@@ -14,7 +14,6 @@ namespace RKW\RkwPdf2content\Service;
  * The TYPO3 project - inspiring people to share!
  */
 
-
 /**
  * Class PageTreeService
  *

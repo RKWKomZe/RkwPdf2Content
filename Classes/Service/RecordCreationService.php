@@ -1,10 +1,5 @@
 <?php
-
 namespace RKW\RkwPdf2content\Service;
-
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\DataHandling\DataHandler;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -18,6 +13,9 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\DataHandling\DataHandler;
 
 define('KEY_CHILDREN', 'nodes');
 define('KEY_ELEMENT_TYPE_CHAPTER', 'chapter');
@@ -221,11 +219,11 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	/**
 	 * Creates flat pages and elements data (recursively)
 	 * @param array $data
-	 * @param int $parentId
+	 * @param string $parentId (maybe a string if new!)
 	 * @param array $parentArray
      * @return void
 	 */
-	protected function processData(array $data, int $parentId, array &$parentArray = []): void
+	protected function processData(array $data, string $parentId, array &$parentArray = []): void
     {
 		foreach ($data as $dataSet) {
 
@@ -264,6 +262,4 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 			}
 		}
 	}
-
-
 }

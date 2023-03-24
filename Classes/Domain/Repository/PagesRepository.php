@@ -15,7 +15,6 @@ namespace RKW\RkwPdf2content\Domain\Repository;
  */
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
-use function PHPUnit\Framework\assertFalse;
 
 /**
  * Class PagesRepository
