@@ -1,10 +1,6 @@
 # Installation
 Ensure you have Java Runtime Environement installed on the server.
+It has been tested successfully with version 18 on Ubuntu 22.04 LTS
 ```
-apt install default-jre
-```
-
-It has been tested successfully with version 8
-```
-apt install openjdk-8-jre-headless
+apt install openjdk-18-jre-headless
 ```

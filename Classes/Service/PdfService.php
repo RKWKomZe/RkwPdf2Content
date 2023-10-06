@@ -96,7 +96,7 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 				if($resultDom == '') {
                     $this->getLogger()->log(
                         \TYPO3\CMS\Core\Log\LogLevel::ERROR,
-                        'PDF2HTML result is empty. Maybe Java is not installed. Try "apt install default-jre"'
+                        'PDF2HTML result is empty. Maybe Java is not installed. See Readme.md'
                     );
 					throw new Exception(
                         LocalizationUtility::translate(

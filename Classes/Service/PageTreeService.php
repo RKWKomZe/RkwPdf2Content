@@ -41,7 +41,8 @@ class PageTreeService
 	public function initFePageTree(int $pid): void
     {
 
-		$page = $GLOBALS['TSFE']->sys_page->getPage($pid);
+        // @extensionScannerIgnoreLine
+        $page = $GLOBALS['TSFE']->sys_page->getPage($pid);
 
 		if ($page['uid']) {
 			$this->fePageTree[] = array(
@@ -74,7 +75,8 @@ class PageTreeService
 	 */
 	private function processSubtree(int $pid, int $level): void
     {
-		$menu = $GLOBALS['TSFE']->sys_page->getMenu($pid, 'uid, title', 'sorting');
+        // @extensionScannerIgnoreLine
+        $menu = $GLOBALS['TSFE']->sys_page->getMenu($pid, 'uid, title', 'sorting');
 		if (count($menu) > 0) {
 			foreach ($menu as $menuItem) {
 				$menuItem['level'] = $level;
