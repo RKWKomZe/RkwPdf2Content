@@ -11,7 +11,6 @@ $EM_CONF[$_EXTKEY] = array(
     'version' => '9.5.3',
     'state' => 'stable',
     'uploadfolder' => false,
-    'createDirs' => '',
     'clearcacheonload' => true,
     'author' => 'Guido Wehner, Birger Stöckelmann, Maximilian Fäßler,Steffen Kroggel',
     'author_email' => 'wehner@bergisch-media.de, stoeckelmann@bergisch-media.de, maximilian@faesslerweb.de, developer@steffenkroggel.de',

@@ -35,16 +35,34 @@ class DisplayPagesController extends ActionController
      * @var \RKW\RkwPdf2content\Service\PageTreeService
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected PageTreeService $pageTreeService;
+    protected ?PageTreeService $pageTreeService = null;
 
 
     /**
      * PagesRepository
      *
-     * @var  \RKW\RkwPdf2content\Domain\Repository\PagesRepository
+     * @var \RKW\RkwPdf2content\Domain\Repository\PagesRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected ?PagesRepository $pagesRepository;
+    protected ?PagesRepository $pagesRepository = null;
+
+
+    /**
+     * @param \RKW\RkwPdf2content\Service\PageTreeService $pageTreeService
+     */
+    public function injectPageTreeService(PageTreeService $pageTreeService)
+    {
+        $this->pageTreeService = $pageTreeService;
+    }
+
+
+    /**
+     * @param \RKW\RkwPdf2content\Domain\Repository\PagesRepository $pagesRepository
+     */
+    public function injectPagesRepository(PagesRepository $pagesRepository)
+    {
+        $this->pagesRepository = $pagesRepository;
+    }
 
 
     /**

@@ -72,6 +72,15 @@ class RecordCreationService implements \TYPO3\CMS\Core\SingletonInterface
 	private array $settings = [];
 
 
+    /**
+     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $tce
+     */
+    public function injectDataHandler(DataHandler $tce)
+    {
+        $this->tce = $tce;
+    }
+
+
 	/**
 	 * @return array
 	 */
