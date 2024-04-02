@@ -43,35 +43,76 @@ class BackendModuleController extends ActionController
 	 * @var \RKW\RkwPdf2content\Service\PageTreeService
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected PageTreeService $pageTreeService;
+	protected ?PageTreeService $pageTreeService = null;
 
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\RecordCreationService
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected RecordCreationService $recordCreationService;
+	protected ?RecordCreationService $recordCreationService = null;
 
 
 	/**
 	 * @var \RKW\RkwPdf2content\Service\PdfService
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected PdfService $pdfService;
+	protected ?PdfService $pdfService = null;
 
 
 	/**
 	 * @var \TYPO3\CMS\Core\Page\PageRenderer
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected PageRenderer $pageRenderer;
+	protected ?PageRenderer $pageRenderer = null;
 
 
 	/**
 	 * @var \TYPO3\CMS\Backend\Routing\UriBuilder
 	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 */
-	protected UriBuilder $uriBuilderBackend;
+	protected ?UriBuilder $uriBuilderBackend = null;
+
+
+    /**
+     * @param \RKW\RkwPdf2content\Service\PageTreeService $pageTreeService
+     */
+    public function injectPageTreeService(PageTreeService $pageTreeService)
+    {
+        $this->pageTreeService = $pageTreeService;
+    }
+
+    /**
+     * @param \RKW\RkwPdf2content\Service\RecordCreationService $recordCreationService
+     */
+    public function injectRecordCreationService(RecordCreationService $recordCreationService)
+    {
+        $this->recordCreationService = $recordCreationService;
+    }
+
+    /**
+     * @param \RKW\RkwPdf2content\Service\PdfService $pdfService
+     */
+    public function injectPdfService(PdfService $pdfService)
+    {
+        $this->pdfService = $pdfService;
+    }
+
+    /**
+     * @param \TYPO3\CMS\Core\Page\PageRenderer $pageRenderer
+     */
+    public function injectMailRepository(PageRenderer $pageRenderer)
+    {
+        $this->pageRenderer = $pageRenderer;
+    }
+
+    /**
+     * @param \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilderBackend
+     */
+    public function injectUriBuilder(UriBuilder $uriBuilderBackend)
+    {
+        $this->uriBuilderBackend = $uriBuilderBackend;
+    }
 
 
 	public function initializeAction()
@@ -165,7 +206,7 @@ class BackendModuleController extends ActionController
             $configManager = $objectManager->get(ConfigurationManager::class);
             $settings = $configManager->getConfiguration(
                 ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
-                $this->extensionName
+                'rkw_pdf2content'
             );
 
             /* @var $pdfService \RKW\RkwPdf2content\Service\PdfService */
