@@ -17,9 +17,9 @@ $EM_CONF[$_EXTKEY] = array(
     'author_company' => 'Bergisch Media GmbH',
     'constraints' => [
         'depends' => [
-            'typo3' => '9.5.0-10.4.99',
-            'core_extended' => '9.5.4-10.4.99',
-            'rkw_basics' => '9.5.0-10.4.99',
+            'typo3' => '10.4.0-10.4.99',
+            'core_extended' => '10.4.0-12.4.99',
+            'rkw_basics' => '10.4.0-12.4.99',
         ],
         'conflicts' => [
             'bm_pdf2content' => ''
