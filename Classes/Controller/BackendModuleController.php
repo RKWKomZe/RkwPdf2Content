@@ -14,12 +14,12 @@ namespace RKW\RkwPdf2content\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Psr\Http\Message\ResponseFactoryInterface;
 use RKW\RkwPdf2content\Service\PageTreeService;
 use RKW\RkwPdf2content\Service\PdfService;
 use RKW\RkwPdf2content\Service\RecordCreationService;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\FormProtection\Exception;
-use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
@@ -73,6 +73,12 @@ class BackendModuleController extends ActionController
 	 */
 	protected ?UriBuilder $uriBuilderBackend = null;
 
+    /**
+     * @var \Psr\Http\Message\ResponseFactoryInterface
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    protected ?ResponseFactoryInterface $responseFactory = null;
+
 
     /**
      * @param \RKW\RkwPdf2content\Service\PageTreeService $pageTreeService
@@ -112,6 +118,14 @@ class BackendModuleController extends ActionController
     public function injectUriBuilder(UriBuilder $uriBuilderBackend)
     {
         $this->uriBuilderBackend = $uriBuilderBackend;
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseFactoryInterface $responseFactory
+     */
+    public function injectResponseFactory(ResponseFactoryInterface $responseFactory)
+    {
+        $this->responseFactory = $responseFactory;
     }
 
 
@@ -168,14 +182,15 @@ class BackendModuleController extends ActionController
      * Processes the pdf and returns the html dom of the pdf
      *
      * @param array|object $params
-     * @param \TYPO3\CMS\Core\Http\Response|null $ajaxObj
-     * @return \TYPO3\CMS\Core\Http\Response
+     * @return \Psr\Http\Message\ResponseInterface
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function processPdfAjax($params = [], \TYPO3\CMS\Core\Http\Response $ajaxObj = null): Response
+    public function processPdfAjax($params = []): \Psr\Http\Message\ResponseInterface
     {
+
+        $ajaxObj = $this->responseFactory->createResponse();
+
         $ajaxObj->withHeader('Content-Type', 'application/json; charset=utf-8');
-        //$ajaxObj->setContentFormat('jsonbody');
 
         $tmpFile = $_FILES['pdffile'];
 
@@ -206,7 +221,7 @@ class BackendModuleController extends ActionController
             $configManager = $objectManager->get(ConfigurationManager::class);
             $settings = $configManager->getConfiguration(
                 ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
-                'rkw_pdf2content'
+                'rkwPdf2content'
             );
 
             /* @var $pdfService \RKW\RkwPdf2content\Service\PdfService */
