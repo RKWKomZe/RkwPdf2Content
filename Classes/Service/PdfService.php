@@ -72,8 +72,7 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
 	 */
 	public function parsePdf(string $pdfFile): string
     {
-		$resultDom = '';
-		$pdfBoxPath = GeneralUtility::getFileAbsFileName($this->settings['pdfBoxPath']);
+        $pdfBoxPath = GeneralUtility::getFileAbsFileName($this->settings['pdfBoxPath']);
 
 		// pdf path found?
 		if (file_exists($pdfFile)) {
@@ -82,6 +81,7 @@ class PdfService implements \TYPO3\CMS\Core\SingletonInterface
                 \TYPO3\CMS\Core\Log\LogLevel::ERROR,
                 $pdfFile
             );
+
 			if (file_exists($pdfBoxPath)) {
                 $this->getLogger()->log(
                     \TYPO3\CMS\Core\Log\LogLevel::ERROR,
